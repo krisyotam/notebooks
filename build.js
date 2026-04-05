@@ -49,14 +49,12 @@ function truncate(str, n) {
   return str.length > n ? str.slice(0, n) + '...' : str;
 }
 
-// Convert internal relative links (no extension, no protocol) to .html links
+// Convert internal relative links to clean /notebooks/slug URLs
 function resolveInternalLinks(md) {
-  // Match markdown links: [text](target)
   return md.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (match, text, href) => {
-    // Skip if it has a protocol, a fragment only, or already has an extension
     if (/^(https?:|mailto:|\/\/|#)/.test(href)) return match;
     if (/\.\w+$/.test(href)) return match;
-    return `[${text}](${href}.html)`;
+    return `[${text}](/notebooks/${href})`;
   });
 }
 
@@ -80,13 +78,13 @@ function notebookHtml(slug, title, formattedCreated, formattedUpdated, renderedB
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="../../style.css" rel="stylesheet">
+  <link href="/notebooks/style.css" rel="stylesheet">
   <title>${title}</title>
 ${mathjaxBlock()}
 </head>
 <body>
 
-<p></p><cite><a href="../../index.html">Notebooks</a></cite>
+<p></p><cite><a href="/notebooks/">Notebooks</a></cite>
 
 <div class="text">
 <div class="left">
@@ -102,9 +100,9 @@ ${mathjaxBlock()}
 <div class="left">
   <hr>
   <p style="display:flex;justify-content:space-between">
-    <a href="${slug}.html">permanent link</a>
-    <cite><a href="../../index.html">Notebooks</a></cite>
-    <a href="${slug}.rss">RSS feed</a>
+    <a href="/notebooks/${slug}">permanent link</a>
+    <cite><a href="/notebooks/">Notebooks</a></cite>
+    <a href="/notebooks/${slug}.rss">RSS feed</a>
   </p>
 </div>
 </div>
@@ -119,13 +117,13 @@ function pageHtml(slug, title, formattedCreated, formattedUpdated, renderedBody)
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="../style.css" rel="stylesheet">
+  <link href="/notebooks/style.css" rel="stylesheet">
   <title>${title}</title>
 ${mathjaxBlock()}
 </head>
 <body>
 
-<p></p><cite><a href="../index.html">Notebooks</a></cite>
+<p></p><cite><a href="/notebooks/">Notebooks</a></cite>
 
 <div class="text">
 <div class="left">
@@ -141,8 +139,8 @@ ${mathjaxBlock()}
 <div class="left">
   <hr>
   <p style="display:flex;justify-content:space-between">
-    <a href="${slug}.html">permanent link</a>
-    <cite><a href="../index.html">Notebooks</a></cite>
+    <a href="/notebooks/${slug}">permanent link</a>
+    <cite><a href="/notebooks/">Notebooks</a></cite>
   </p>
 </div>
 </div>
@@ -152,7 +150,7 @@ ${mathjaxBlock()}
 }
 
 function notebookRss(slug, title, formattedUpdated, renderedBody, updatedDate) {
-  const link = `${config.baseUrl}/build/notebooks/${slug}.html`;
+  const link = `${config.baseUrl}/${slug}`;
   const description = truncate(stripHtml(renderedBody), 500);
   return `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0">
@@ -174,7 +172,7 @@ function notebookRss(slug, title, formattedUpdated, renderedBody, updatedDate) {
 
 function indexHtml(notebookEntries, hasFaq) {
   const faqLine = hasFaq
-    ? `<p>I have compiled a list of <a href="build/faq.html" target="_blank">frequently asked questions (FAQ)</a>, and their answers. The questions, and by extension their answers, pertain only to the notebooks and not my larger body of work.</p>\n\n`
+    ? `<p>I have compiled a list of <a href="/notebooks/faq" target="_blank">frequently asked questions (FAQ)</a>, and their answers. The questions, and by extension their answers, pertain only to the notebooks and not my larger body of work.</p>\n\n`
     : '';
   return `<!DOCTYPE html>
 <html lang="en">
@@ -202,7 +200,7 @@ function indexHtml(notebookEntries, hasFaq) {
 
 ${faqLine}<p>&mdash; <a href="https://krisyotam.com/home">Kris</a></p>
 
-<center><a href="build/feed.rss" target="_blank">RSS feed</a> &nbsp; <a href="build/colophon.html" target="_blank">Colophon</a> &nbsp; <a href="https://krisyotam.com/contact" target="_blank">Contact</a></center>
+<center><a href="/notebooks/feed.rss" target="_blank">RSS feed</a> &nbsp; <a href="/notebooks/colophon" target="_blank">Colophon</a> &nbsp; <a href="https://krisyotam.com/contact" target="_blank">Contact</a></center>
 
 </div>
 </div>
@@ -215,7 +213,7 @@ ${notebookEntries}
 
 function masterRss(notebooks) {
   const items = notebooks.map(n => {
-    const link = `${config.baseUrl}/build/notebooks/${n.slug}.html`;
+    const link = `${config.baseUrl}/${n.slug}`;
     const description = truncate(stripHtml(n.renderedBody), 500);
     return `    <item>
       <title>${escapeXml(n.title)}</title>
@@ -230,7 +228,7 @@ function masterRss(notebooks) {
 <rss version="2.0">
   <channel>
     <title>${escapeXml(config.title)}</title>
-    <link>${config.baseUrl}/index.html</link>
+    <link>${config.baseUrl}</link>
     <description>${escapeXml(config.title)} by ${escapeXml(config.author)}</description>
     <lastBuildDate>${rssDate(new Date())}</lastBuildDate>
 ${items}
@@ -289,7 +287,7 @@ for (const nb of notebooks) {
 // Write index to repo root
 const notebookEntries = notebooks.map(nb => {
   const formattedUpdated = formatDate(nb.updated);
-  return `<div class="listing"><div class="left"><dl><dt><a href="build/notebooks/${nb.slug}.html" target="_blank">${nb.title}</a> <i>(${formattedUpdated})</i></dt></dl></div></div>`;
+  return `<div class="listing"><div class="left"><dl><dt><a href="/notebooks/${nb.slug}" target="_blank">${nb.title}</a> <i>(${formattedUpdated})</i></dt></dl></div></div>`;
 }).join('\n');
 
 const hasFaq = config.faq && fs.existsSync(path.join(srcDir, 'faq.md'));

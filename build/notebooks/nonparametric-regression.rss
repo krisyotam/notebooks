@@ -2,13 +2,13 @@
 <rss version="2.0">
   <channel>
     <title>Nonparametric Regression</title>
-    <link>https://krisyotam.com/notebooks/build/notebooks/nonparametric-regression.html</link>
+    <link>https://krisyotam.com/notebooks/nonparametric-regression</link>
     <description>Nonparametric Regression notebook</description>
     <lastBuildDate>Invalid Date</lastBuildDate>
     <item>
       <title>Nonparametric Regression</title>
-      <link>https://krisyotam.com/notebooks/build/notebooks/nonparametric-regression.html</link>
-      <guid>https://krisyotam.com/notebooks/build/notebooks/nonparametric-regression.html</guid>
+      <link>https://krisyotam.com/notebooks/nonparametric-regression</link>
+      <guid>https://krisyotam.com/notebooks/nonparametric-regression</guid>
       <pubDate>Invalid Date</pubDate>
       <description>Methods for estimating regression functions without assuming a parametric form for the relationship between predictors and response. The function is estimated directly from data, with smoothness controlled by a bandwidth or tuning parameter rather than a fixed model. Covers kernel regression, local polynomial fitting, splines, and related approaches. Connects to density-estimation and smoothing-splines.
 See Also

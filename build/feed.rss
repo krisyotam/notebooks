@@ -2,21 +2,21 @@
 <rss version="2.0">
   <channel>
     <title>Kris&apos;s Notebooks</title>
-    <link>https://krisyotam.com/notebooks/index.html</link>
+    <link>https://krisyotam.com/notebooks</link>
     <description>Kris&apos;s Notebooks by Kris Yotam</description>
-    <lastBuildDate>Sun, 05 Apr 2026 04:36:21 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 05 Apr 2026 06:11:20 GMT</lastBuildDate>
     <item>
       <title>Ada Lovelace</title>
-      <link>https://krisyotam.com/notebooks/build/notebooks/ada-lovelace.html</link>
-      <guid>https://krisyotam.com/notebooks/build/notebooks/ada-lovelace.html</guid>
+      <link>https://krisyotam.com/notebooks/ada-lovelace</link>
+      <guid>https://krisyotam.com/notebooks/ada-lovelace</guid>
       <pubDate>Invalid Date</pubDate>
       <description>Augusta Ada King, Countess of Lovelace was known for her work on the Analytical Engine. The general-purpose computer proposed by Charles Babbage. She was an English mathematician and writer. Born as the sole legitimate daughter of Lord Byron, the union of her parents was broken a month after her birth. Her mother Anne Isabella Noel Byron, 11th Baroness Wentworth and Baroness Byron, who was nicknamed Annabella and referred to as Lady Byron, was a philanthropist and educational reformer.
 Ada&amp;#39;s...</description>
     </item>
     <item>
       <title>Nonparametric Regression</title>
-      <link>https://krisyotam.com/notebooks/build/notebooks/nonparametric-regression.html</link>
-      <guid>https://krisyotam.com/notebooks/build/notebooks/nonparametric-regression.html</guid>
+      <link>https://krisyotam.com/notebooks/nonparametric-regression</link>
+      <guid>https://krisyotam.com/notebooks/nonparametric-regression</guid>
       <pubDate>Invalid Date</pubDate>
       <description>Methods for estimating regression functions without assuming a parametric form for the relationship between predictors and response. The function is estimated directly from data, with smoothness controlled by a bandwidth or tuning parameter rather than a fixed model. Covers kernel regression, local polynomial fitting, splines, and related approaches. Connects to density-estimation and smoothing-splines.
 See Also
