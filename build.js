@@ -9,14 +9,22 @@ const outDir = '.';
 
 // ---- Utilities ----
 
-const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-
 function formatDate(d) {
-  const date = new Date(d);
-  const day = String(date.getUTCDate()).padStart(2, '0');
-  const mon = MONTHS[date.getUTCMonth()];
-  const year = date.getUTCFullYear();
-  return `${day} ${mon} ${year}`;
+  // gray-matter parses dates into Date objects, so we must handle both
+  if (d instanceof Date) {
+    // Reconstruct from UTC to avoid timezone shift (frontmatter has no tz)
+    const year = d.getUTCFullYear();
+    const mon = String(d.getUTCMonth() + 1).padStart(2, '0');
+    const day = String(d.getUTCDate()).padStart(2, '0');
+    const hrs = String(d.getUTCHours()).padStart(2, '0');
+    const min = String(d.getUTCMinutes()).padStart(2, '0');
+    return `${year}.${mon}.${day}, ${hrs}:${min}`;
+  }
+  const s = String(d);
+  const m = s.match(/(\d{4})-(\d{2})-(\d{2})(?:T(\d{2}):(\d{2}))?/);
+  if (!m) return s;
+  const [, year, mon, day, hrs = '00', min = '00'] = m;
+  return `${year}.${mon}.${day}, ${hrs}:${min}`;
 }
 
 function rssDate(d) {
@@ -80,21 +88,15 @@ ${mathjaxBlock()}
 </div>
 </div>
 
-<hr>
-
 <div class="text">
 <div class="left">
-  <p>
-    <a href="${slug}.html">permanent link for this notebook</a> &nbsp;
-    <a href="${slug}.rss">RSS feed for this notebook</a>
+  <hr>
+  <p style="display:flex;justify-content:space-between">
+    <a href="${slug}.html">permanent link</a>
+    <cite><a href="index.html">Notebooks</a></cite>
+    <a href="${slug}.rss">RSS feed</a>
   </p>
 </div>
-</div>
-
-<div class="text">
-<center>
-  <cite><a href="index.html">Notebooks</a></cite>
-</center>
 </div>
 
 </body>
@@ -123,7 +125,9 @@ function notebookRss(slug, title, formattedUpdated, renderedBody, updatedDate) {
 }
 
 function indexHtml(notebookEntries, hasFaq) {
-  const faqLink = hasFaq ? `<a href="faq.html">FAQ</a> &nbsp; ` : '';
+  const faqLine = hasFaq
+    ? `<p>I have compiled a list of <a href="faq.html" target="_blank">frequently asked questions</a> and their answers. The questions, and by extension their answers, pertain only to the notebooks and not my larger body of work.</p>\n\n`
+    : '';
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -136,9 +140,22 @@ function indexHtml(notebookEntries, hasFaq) {
 
 <div class="text">
 <div class="left">
-  <h1>${config.title}</h1>
-  <p>${faqLink}<a href="feed.rss">RSS feed</a></p>
-  <hr>
+
+<h1>${config.title}</h1>
+
+<blockquote><center><em>These are my fancies, by which
+	<br>I endeavor not to make things known
+	<br>but myself.</em></center></blockquote>
+
+<blockquote><em>&para; And I turned my selfe to behold wisedome, and madnesse and folly: for what can the man doe, that commeth after the king? euen that which hath bene already done. Then I saw that wisedome excelleth folly, as farre as light excelleth darkenesse. The wise mans eyes are in his head, but the foole walketh in darknes: and I my selfe perceiued also that one euent happeneth to them all. Then said I in my heart, As it happeneth to the foole, so it happeneth euen to me, and why was I then more wise? then I said in my heart, That this also is vanitie.</em>
+	&mdash;Solomon, <cite>Ecclesiastes</cite> 2:12&ndash;15 (1611, KJV)</blockquote>
+
+<p>These are the notebooks &mdash; more accurately, a slow porting of my previous OneNote notebooks, titled the Libers (Book of Records), where I left abstracts, questions, comments, and links to notes on the topics at hand. This carries on that spirit. If you have answers to any unanswered questions, and reasonable sources for the substantiation of them, feel free to <a href="https://krisyotam.com/contact" target="_blank">write</a>.</p>
+
+${faqLine}<p>&mdash; <a href="https://krisyotam.com/home">Kris</a></p>
+
+<center><a href="feed.rss" target="_blank">RSS feed</a> &nbsp; <a href="colophon.html" target="_blank">Colophon</a> &nbsp; <a href="https://krisyotam.com/contact" target="_blank">Contact</a></center>
+
 </div>
 </div>
 
@@ -184,7 +201,7 @@ function escapeXml(str) {
 
 // ---- Build ----
 
-const files = fs.readdirSync(srcDir).filter(f => f.endsWith('.md') && f !== 'faq.md');
+const files = fs.readdirSync(srcDir).filter(f => f.endsWith('.md') && f !== 'faq.md' && f !== 'colophon.md');
 
 const notebooks = files.map(file => {
   const slug = file.replace(/\.md$/, '');
@@ -220,7 +237,7 @@ for (const nb of notebooks) {
 // Write index
 const notebookEntries = notebooks.map(nb => {
   const formattedUpdated = formatDate(nb.updated);
-  return `<div class="listing"><div class="left"><dl><dt><a href="${nb.slug}.html">${nb.title}</a> <i>(${formattedUpdated})</i></dt></dl></div></div>`;
+  return `<div class="listing"><div class="left"><dl><dt><a href="${nb.slug}.html" target="_blank">${nb.title}</a> <i>(${formattedUpdated})</i></dt></dl></div></div>`;
 }).join('\n');
 
 const hasFaq = config.faq && fs.existsSync(path.join(srcDir, 'faq.md'));
@@ -242,6 +259,19 @@ if (hasFaq) {
   const html = notebookHtml('faq', data.title || 'FAQ', formattedCreated, formattedUpdated, renderedBody);
   fs.writeFileSync(path.join(outDir, 'faq.html'), html);
   console.log('  faq.html');
+}
+
+// Write colophon if present
+const hasColophon = fs.existsSync(path.join(srcDir, 'colophon.md'));
+if (hasColophon) {
+  const raw = fs.readFileSync(path.join(srcDir, 'colophon.md'), 'utf8');
+  const { data, content } = matter(raw);
+  const renderedBody = renderMarkdown(content);
+  const formattedCreated = formatDate(data.created);
+  const formattedUpdated = formatDate(data.updated);
+  const html = notebookHtml('colophon', data.title || 'Colophon', formattedCreated, formattedUpdated, renderedBody);
+  fs.writeFileSync(path.join(outDir, 'colophon.html'), html);
+  console.log('  colophon.html');
 }
 
 console.log('Done.');

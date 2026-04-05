@@ -1,7 +1,7 @@
 ---
 title: "Nonparametric Regression"
-created: 2026-04-04
-updated: 2026-04-04
+created: 2026-04-04T21:31:00
+updated: 2026-04-04T21:31:00
 ---
 
 Methods for estimating regression functions without assuming a parametric form for the relationship between predictors and response. The function is estimated directly from data, with smoothness controlled by a bandwidth or tuning parameter rather than a fixed model. Covers kernel regression, local polynomial fitting, splines, and related approaches. Connects to [density-estimation](density-estimation) and [smoothing-splines](smoothing-splines).
