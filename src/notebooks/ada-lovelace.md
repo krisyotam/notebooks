@@ -14,7 +14,7 @@ In a letter to Annabella Byron in 1843, De Morgan wrote:
 
 ## To Read
 
-- Correspondence between Ada Lovelace and Augustus De Morgan (1840 to 1842), available through the Clay Mathematics Institute digital archive
+- [Correspondence between Ada Lovelace and Augustus De Morgan](https://krisyotam.com/doc/mathematics/lovelace-demorgan) (1840 to 1842), available through the Clay Mathematics Institute digital archive
 - Sketch of the Analytical Engine invented by Charles Babbage, with Notes by the Translator by Ada Lovelace (1843)
 - Letters of Ada Lovelace to Charles Babbage, Augustus De Morgan, and Annabella Byron
 - The Lovelace Byron Papers held at the Bodleian Libraries, including childhood education records, tutor correspondence, and family letters
