@@ -3,6 +3,16 @@ const path = require('path');
 const matter = require('gray-matter');
 const { marked } = require('marked');
 
+// Tell gray-matter to treat all YAML values as strings (no date auto-parsing)
+const matterOpts = {
+  engines: {
+    yaml: {
+      parse: s => require('js-yaml').load(s, { schema: require('js-yaml').FAILSAFE_SCHEMA }),
+      stringify: o => require('js-yaml').dump(o)
+    }
+  }
+};
+
 const config = JSON.parse(fs.readFileSync('config.json', 'utf8'));
 const srcDir = 'src';
 const srcNotebooksDir = path.join(srcDir, 'notebooks');
@@ -13,21 +23,18 @@ const outDir = '.';
 // ---- Utilities ----
 
 function formatDate(d) {
-  // gray-matter parses dates into Date objects, so we must handle both
-  if (d instanceof Date) {
-    // Reconstruct from UTC to avoid timezone shift (frontmatter has no tz)
-    const year = d.getUTCFullYear();
-    const mon = String(d.getUTCMonth() + 1).padStart(2, '0');
-    const day = String(d.getUTCDate()).padStart(2, '0');
-    const hrs = String(d.getUTCHours()).padStart(2, '0');
-    const min = String(d.getUTCMinutes()).padStart(2, '0');
-    return `${year}.${mon}.${day}, ${hrs}:${min}`;
-  }
   const s = String(d);
-  const m = s.match(/(\d{4})-(\d{2})-(\d{2})(?:T(\d{2}):(\d{2}))?/);
+  // Match: 2026-04-04T09:31pm or 2026-04-04T12:00am or plain 2026-04-04
+  const m = s.match(/(\d{4})-(\d{2})-(\d{2})(?:T(\d{1,2}):(\d{2})(am|pm)?)?/i);
   if (!m) return s;
-  const [, year, mon, day, hrs = '00', min = '00'] = m;
-  return `${year}.${mon}.${day}, ${hrs}:${min}`;
+  let [, year, mon, day, hrs = '0', min = '00', ampm] = m;
+  let h = parseInt(hrs, 10);
+  if (ampm) {
+    ampm = ampm.toLowerCase();
+    if (ampm === 'am' && h === 12) h = 0;
+    else if (ampm === 'pm' && h !== 12) h += 12;
+  }
+  return `${year}.${mon}.${day}, ${String(h).padStart(2, '0')}:${min}`;
 }
 
 function rssDate(d) {
@@ -251,7 +258,7 @@ const files = fs.readdirSync(srcNotebooksDir).filter(f => f.endsWith('.md'));
 const notebooks = files.map(file => {
   const slug = file.replace(/\.md$/, '');
   const raw = fs.readFileSync(path.join(srcNotebooksDir, file), 'utf8');
-  const { data, content } = matter(raw);
+  const { data, content } = matter(raw, matterOpts);
   const renderedBody = renderMarkdown(content);
   return {
     slug,
@@ -297,7 +304,7 @@ console.log('  build/feed.rss');
 // Write FAQ if present
 if (hasFaq) {
   const raw = fs.readFileSync(path.join(srcDir, 'faq.md'), 'utf8');
-  const { data, content } = matter(raw);
+  const { data, content } = matter(raw, matterOpts);
   const renderedBody = renderMarkdown(content);
   const formattedCreated = formatDate(data.created);
   const formattedUpdated = formatDate(data.updated);
@@ -310,7 +317,7 @@ if (hasFaq) {
 const hasColophon = fs.existsSync(path.join(srcDir, 'colophon.md'));
 if (hasColophon) {
   const raw = fs.readFileSync(path.join(srcDir, 'colophon.md'), 'utf8');
-  const { data, content } = matter(raw);
+  const { data, content } = matter(raw, matterOpts);
   const renderedBody = renderMarkdown(content);
   const formattedCreated = formatDate(data.created);
   const formattedUpdated = formatDate(data.updated);
