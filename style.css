@@ -40,6 +40,10 @@ h1, h2, h3 {
   font-weight: bold;
 }
 
+dl {
+  margin: 0;
+}
+
 dt {
-  margin: 0.3em 0;
+  margin: 0;
 }
