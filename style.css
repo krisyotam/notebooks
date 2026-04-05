@@ -16,6 +16,10 @@ body {
   text-align: left;
 }
 
+.listing:first-of-type {
+  margin-top: 0.6em;
+}
+
 .listing {
   width: 40em;
   text-align: center;
