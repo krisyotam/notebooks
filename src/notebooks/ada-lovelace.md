@@ -27,6 +27,14 @@ Augusta Ada King, Countess of Lovelace was known for her work on the [Analytical
     <img src="https://krisyotam.com/cdn/images/people/mathematicians/ada-lovelace-daguerreotype.png" alt="Ada Lovelace daguerreotype" style="width: 100%; height: 200px; object-fit: cover;">
     <figcaption style="font-size: 0.8em; color: #666; margin-top: 4px;">Ada Lovelace. Daguerreotype by Antoine Claudet, 1843.</figcaption>
   </figure>
+  <figure style="margin: 0; text-align: center;">
+    <img src="https://krisyotam.com/cdn/images/people/mathematicians/william-king-noel.gif" alt="William King-Noel, 1st Earl of Lovelace" style="width: 100%; height: 200px; object-fit: cover;">
+    <figcaption style="font-size: 0.8em; color: #666; margin-top: 4px;">William King-Noel, 1st Earl of Lovelace, 1805-1893.</figcaption>
+  </figure>
+  <figure style="margin: 0; text-align: center;">
+    <img src="https://krisyotam.com/cdn/images/people/mathematicians/mary-somerville.jpg" alt="Mary Somerville" style="width: 100%; height: 200px; object-fit: cover;">
+    <figcaption style="font-size: 0.8em; color: #666; margin-top: 4px;">Mary Somerville. Thomas Phillips, c. 1834.</figcaption>
+  </figure>
 </div>
 
 Ada's early childhood is simply one of the most poetic things I've ever heard. Her mother early in life deliberately pushed Ada into mathematics and formal logic with the goal of countering the "poetic madness" of her father. Poetry and the likes of literature were heavily discouraged in her childhood, with discipline ranging from written apologies to forced stillness. She grew up on isolated estates with tutors and governesses, with a highly controlled and structured education. Never having attended formal school or university education, she instead trained under a rotating cast of private tutors such as [Mary Somerville](https://en.wikipedia.org/wiki/Mary_Somerville), [William Frend](https://en.wikipedia.org/wiki/William_Frend_(mathematician)), and [William King](https://en.wikipedia.org/wiki/William_King-Noel,_1st_Earl_of_Lovelace). In 1840-41, when Ada was around 24-25, she began to have serious correspondence with [Augustus De Morgan](https://en.wikipedia.org/wiki/Augustus_De_Morgan) (the first professor of mathematics at University College London). At around 25-27 her instruction deepened, with De Morgan assigning topics across algebra, calculus foundations, and symbolic reasoning through mail. This is well after 1833, so she has already met Babbage.
