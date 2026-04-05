@@ -5,6 +5,9 @@ const { marked } = require('marked');
 
 const config = JSON.parse(fs.readFileSync('config.json', 'utf8'));
 const srcDir = 'src';
+const srcNotebooksDir = path.join(srcDir, 'notebooks');
+const buildDir = 'build';
+const buildNotebooksDir = path.join(buildDir, 'notebooks');
 const outDir = '.';
 
 // ---- Utilities ----
@@ -70,13 +73,13 @@ function notebookHtml(slug, title, formattedCreated, formattedUpdated, renderedB
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="style.css" rel="stylesheet">
+  <link href="../../style.css" rel="stylesheet">
   <title>${title}</title>
 ${mathjaxBlock()}
 </head>
 <body>
 
-<p></p><cite><a href="index.html">Notebooks</a></cite>
+<p></p><cite><a href="../../index.html">Notebooks</a></cite>
 
 <div class="text">
 <div class="left">
@@ -93,7 +96,7 @@ ${mathjaxBlock()}
   <hr>
   <p style="display:flex;justify-content:space-between">
     <a href="${slug}.html">permanent link</a>
-    <cite><a href="index.html">Notebooks</a></cite>
+    <cite><a href="../../index.html">Notebooks</a></cite>
     <a href="${slug}.rss">RSS feed</a>
   </p>
 </div>
@@ -103,8 +106,46 @@ ${mathjaxBlock()}
 </html>`;
 }
 
+function pageHtml(slug, title, formattedCreated, formattedUpdated, renderedBody) {
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="../style.css" rel="stylesheet">
+  <title>${title}</title>
+${mathjaxBlock()}
+</head>
+<body>
+
+<p></p><cite><a href="../index.html">Notebooks</a></cite>
+
+<div class="text">
+<div class="left">
+  <h2>${title}</h2>
+  <i>Last update: ${formattedUpdated}</i>
+  <br><i>First version: ${formattedCreated}</i>
+  <hr>
+  ${renderedBody}
+</div>
+</div>
+
+<div class="text">
+<div class="left">
+  <hr>
+  <p style="display:flex;justify-content:space-between">
+    <a href="${slug}.html">permanent link</a>
+    <cite><a href="../index.html">Notebooks</a></cite>
+  </p>
+</div>
+</div>
+
+</body>
+</html>`;
+}
+
 function notebookRss(slug, title, formattedUpdated, renderedBody, updatedDate) {
-  const link = `${config.baseUrl}/${slug}.html`;
+  const link = `${config.baseUrl}/build/notebooks/${slug}.html`;
   const description = truncate(stripHtml(renderedBody), 500);
   return `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0">
@@ -126,7 +167,7 @@ function notebookRss(slug, title, formattedUpdated, renderedBody, updatedDate) {
 
 function indexHtml(notebookEntries, hasFaq) {
   const faqLine = hasFaq
-    ? `<p>I have compiled a list of <a href="faq.html" target="_blank">frequently asked questions</a> and their answers. The questions, and by extension their answers, pertain only to the notebooks and not my larger body of work.</p>\n\n`
+    ? `<p>I have compiled a list of <a href="build/faq.html" target="_blank">frequently asked questions (FAQ)</a>, and their answers. The questions, and by extension their answers, pertain only to the notebooks and not my larger body of work.</p>\n\n`
     : '';
   return `<!DOCTYPE html>
 <html lang="en">
@@ -154,7 +195,7 @@ function indexHtml(notebookEntries, hasFaq) {
 
 ${faqLine}<p>&mdash; <a href="https://krisyotam.com/home">Kris</a></p>
 
-<center><a href="feed.rss" target="_blank">RSS feed</a> &nbsp; <a href="colophon.html" target="_blank">Colophon</a> &nbsp; <a href="https://krisyotam.com/contact" target="_blank">Contact</a></center>
+<center><a href="build/feed.rss" target="_blank">RSS feed</a> &nbsp; <a href="build/colophon.html" target="_blank">Colophon</a> &nbsp; <a href="https://krisyotam.com/contact" target="_blank">Contact</a></center>
 
 </div>
 </div>
@@ -167,7 +208,7 @@ ${notebookEntries}
 
 function masterRss(notebooks) {
   const items = notebooks.map(n => {
-    const link = `${config.baseUrl}/${n.slug}.html`;
+    const link = `${config.baseUrl}/build/notebooks/${n.slug}.html`;
     const description = truncate(stripHtml(n.renderedBody), 500);
     return `    <item>
       <title>${escapeXml(n.title)}</title>
@@ -201,11 +242,15 @@ function escapeXml(str) {
 
 // ---- Build ----
 
-const files = fs.readdirSync(srcDir).filter(f => f.endsWith('.md') && f !== 'faq.md' && f !== 'colophon.md');
+// Ensure output directories exist
+fs.mkdirSync(buildDir, { recursive: true });
+fs.mkdirSync(buildNotebooksDir, { recursive: true });
+
+const files = fs.readdirSync(srcNotebooksDir).filter(f => f.endsWith('.md'));
 
 const notebooks = files.map(file => {
   const slug = file.replace(/\.md$/, '');
-  const raw = fs.readFileSync(path.join(srcDir, file), 'utf8');
+  const raw = fs.readFileSync(path.join(srcNotebooksDir, file), 'utf8');
   const { data, content } = matter(raw);
   const renderedBody = renderMarkdown(content);
   return {
@@ -220,24 +265,24 @@ const notebooks = files.map(file => {
 // Sort by updated date, most recent first
 notebooks.sort((a, b) => new Date(b.updated) - new Date(a.updated));
 
-// Write per-notebook files
+// Write per-notebook files to build/notebooks/
 for (const nb of notebooks) {
   const formattedCreated = formatDate(nb.created);
   const formattedUpdated = formatDate(nb.updated);
 
   const html = notebookHtml(nb.slug, nb.title, formattedCreated, formattedUpdated, nb.renderedBody);
-  fs.writeFileSync(path.join(outDir, `${nb.slug}.html`), html);
+  fs.writeFileSync(path.join(buildNotebooksDir, `${nb.slug}.html`), html);
 
   const rss = notebookRss(nb.slug, nb.title, formattedUpdated, nb.renderedBody, nb.updated);
-  fs.writeFileSync(path.join(outDir, `${nb.slug}.rss`), rss);
+  fs.writeFileSync(path.join(buildNotebooksDir, `${nb.slug}.rss`), rss);
 
-  console.log(`  ${nb.slug}.html  ${nb.slug}.rss`);
+  console.log(`  build/notebooks/${nb.slug}.html  build/notebooks/${nb.slug}.rss`);
 }
 
-// Write index
+// Write index to repo root
 const notebookEntries = notebooks.map(nb => {
   const formattedUpdated = formatDate(nb.updated);
-  return `<div class="listing"><div class="left"><dl><dt><a href="${nb.slug}.html" target="_blank">${nb.title}</a> <i>(${formattedUpdated})</i></dt></dl></div></div>`;
+  return `<div class="listing"><div class="left"><dl><dt><a href="build/notebooks/${nb.slug}.html" target="_blank">${nb.title}</a> <i>(${formattedUpdated})</i></dt></dl></div></div>`;
 }).join('\n');
 
 const hasFaq = config.faq && fs.existsSync(path.join(srcDir, 'faq.md'));
@@ -245,9 +290,9 @@ const hasFaq = config.faq && fs.existsSync(path.join(srcDir, 'faq.md'));
 fs.writeFileSync(path.join(outDir, 'index.html'), indexHtml(notebookEntries, hasFaq));
 console.log('  index.html');
 
-// Write master RSS
-fs.writeFileSync(path.join(outDir, 'feed.rss'), masterRss(notebooks));
-console.log('  feed.rss');
+// Write master RSS to build/
+fs.writeFileSync(path.join(buildDir, 'feed.rss'), masterRss(notebooks));
+console.log('  build/feed.rss');
 
 // Write FAQ if present
 if (hasFaq) {
@@ -256,9 +301,9 @@ if (hasFaq) {
   const renderedBody = renderMarkdown(content);
   const formattedCreated = formatDate(data.created);
   const formattedUpdated = formatDate(data.updated);
-  const html = notebookHtml('faq', data.title || 'FAQ', formattedCreated, formattedUpdated, renderedBody);
-  fs.writeFileSync(path.join(outDir, 'faq.html'), html);
-  console.log('  faq.html');
+  const html = pageHtml('faq', data.title || 'FAQ', formattedCreated, formattedUpdated, renderedBody);
+  fs.writeFileSync(path.join(buildDir, 'faq.html'), html);
+  console.log('  build/faq.html');
 }
 
 // Write colophon if present
@@ -269,9 +314,9 @@ if (hasColophon) {
   const renderedBody = renderMarkdown(content);
   const formattedCreated = formatDate(data.created);
   const formattedUpdated = formatDate(data.updated);
-  const html = notebookHtml('colophon', data.title || 'Colophon', formattedCreated, formattedUpdated, renderedBody);
-  fs.writeFileSync(path.join(outDir, 'colophon.html'), html);
-  console.log('  colophon.html');
+  const html = pageHtml('colophon', data.title || 'Colophon', formattedCreated, formattedUpdated, renderedBody);
+  fs.writeFileSync(path.join(buildDir, 'colophon.html'), html);
+  console.log('  build/colophon.html');
 }
 
 console.log('Done.');
