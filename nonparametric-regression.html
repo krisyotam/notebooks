@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="style.css" rel="stylesheet">
+  <title>Nonparametric Regression</title>
+  <script>
+    MathJax = { tex: { inlineMath: [['$','$'],['\\(','\\)']] } };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" id="MathJax-script" async></script>
+</head>
+<body>
+
+<p></p><cite><a href="index.html">Notebooks</a></cite>
+
+<div class="text">
+<div class="left">
+  <h2>Nonparametric Regression</h2>
+  <i>Last update: 04 Apr 2026</i>
+  <br><i>First version: 04 Apr 2026</i>
+  <hr>
+  <p>Methods for estimating regression functions without assuming a parametric form for the relationship between predictors and response. The function is estimated directly from data, with smoothness controlled by a bandwidth or tuning parameter rather than a fixed model. Covers kernel regression, local polynomial fitting, splines, and related approaches. Connects to <a href="density-estimation.html">density-estimation</a> and <a href="smoothing-splines.html">smoothing-splines</a>.</p>
+<h2>See Also</h2>
+<ul>
+<li><a href="density-estimation.html">Density Estimation</a></li>
+<li><a href="gaussian-processes.html">Gaussian Processes</a></li>
+</ul>
+<h2>Recommended</h2>
+<ul>
+<li>Wand, M. P. and Jones, M. C. <em>Kernel Smoothing</em> (1995). The standard reference for kernel methods in regression and density estimation. Covers bandwidth selection, asymptotic theory, and multivariate extensions with clarity.</li>
+<li>Fan, J. and Gijbels, I. <em>Local Polynomial Modelling and Its Applications</em> (1996). Definitive treatment of local polynomial regression. Better boundary behavior than Nadaraya-Watson; explains why local linear is the right default.</li>
+<li>Green, P. J. and Silverman, B. W. <em>Nonparametric Regression and Generalized Linear Models: A Roughness Penalty Approach</em> (1994). Spline smoothing from a penalized likelihood perspective. Connects smoothing splines to reproducing kernel Hilbert spaces.</li>
+<li>Wasserman, L. <em>All of Nonparametric Statistics</em> (2006). Modern treatment with minimax theory, confidence bands, and connections to machine learning. Good on what is and isn&#39;t estimable.</li>
+</ul>
+<h2>To Read</h2>
+<ul>
+<li>Gyorfi, L., Kohler, M., Krzyzak, A., and Walk, H. <em>A Distribution-Free Theory of Nonparametric Regression</em> (2002). Comprehensive asymptotic theory without distributional assumptions. Dense but thorough.</li>
+<li>Tsybakov, A. B. <em>Introduction to Nonparametric Estimation</em> (2009). Minimax lower bounds and optimal rates. Essential for understanding fundamental limits.</li>
+<li>Hastie, T., Tibshirani, R., and Friedman, J. <em>The Elements of Statistical Learning</em> (2009). Chapters 5-6 give an accessible treatment of splines and kernel methods in the context of prediction.</li>
+</ul>
+<h2>Questions</h2>
+<ul>
+<li>What is the minimax optimal rate for estimating a smooth regression function in <em>d</em> dimensions, and how does the curse of dimensionality manifest in the bandwidth selection problem?</li>
+<li>When does local polynomial regression with degree <em>p</em> achieve better bias than Nadaraya-Watson at boundary points, and why does degree 1 suffice for most practical purposes?</li>
+<li>Under what conditions can a nonparametric regression estimator achieve parametric rates, and what does this imply about adaptive estimation over function classes?</li>
+</ul>
+
+</div>
+</div>
+
+<hr>
+
+<div class="text">
+<div class="left">
+  <p>
+    <a href="nonparametric-regression.html">permanent link for this notebook</a> &nbsp;
+    <a href="nonparametric-regression.rss">RSS feed for this notebook</a>
+  </p>
+</div>
+</div>
+
+<div class="text">
+<center>
+  <cite><a href="index.html">Notebooks</a></cite>
+</center>
+</div>
+
+</body>
+</html>
