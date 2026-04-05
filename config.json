@@ -1,0 +1,8 @@
+{
+  "title": "Notebooks",
+  "author": "Kris Yotam",
+  "baseUrl": "https://krisyotam.com/notebooks",
+  "faq": true,
+  "mathjax": true,
+  "mathjaxUrl": "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"
+}
