@@ -56,11 +56,18 @@ dt {
   margin: 0;
 }
 
-/* ── Back link ── */
+/* ── Header wrapper — mirrors <header> in header.tsx ── */
+
+.nb-wrapper {
+  width: 34em;
+  margin: 0 auto 1rem;
+  box-sizing: border-box;
+}
+
 /* header.tsx: text-sm text-muted-foreground hover:text-foreground mb-6 font-serif italic */
 
 .nb-back {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 0.5rem;
   font-family: serif;
@@ -68,9 +75,7 @@ dt {
   font-size: 0.875rem;
   color: #666;
   text-decoration: none;
-  width: 34em;
-  margin: 0 auto 1.5rem;
-  box-sizing: border-box;
+  margin-bottom: 1.5rem;
 }
 
 .nb-back:visited {
@@ -98,10 +103,6 @@ dt {
   border: 1px solid #e5e5e5;
   background: #fff;
   padding: 1.5rem;
-  margin-bottom: 0;
-  width: 34em;
-  margin-left: auto;
-  margin-right: auto;
   box-sizing: border-box;
   border-radius: 2px;
   box-shadow: 0 1px 2px rgba(0,0,0,0.05);
@@ -244,12 +245,9 @@ dt {
 }
 
 /* header.tsx: mt-6 border-b border-border (outer decorative line below card) */
-.nb-header-outer-rule {
-  border: none;
+.nb-outer-rule {
   border-top: 1px solid #e5e5e5;
-  margin: 1.5rem auto 1.5rem;
-  width: 34em;
-  box-sizing: border-box;
+  margin-top: 1.5rem;
 }
 
 /* Color intensity by value — maps to getStatusColor/getConfidenceColor/getImportanceColor grayscale */
@@ -266,5 +264,5 @@ dt {
     width: 240px;
     font-size: 0.8rem;
   }
-  .nb-header-outer-rule { width: auto; }
+  .nb-wrapper { width: auto; max-width: 100%; }
 }
