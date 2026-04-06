@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap");
 
 body {
   font-family: serif;
@@ -57,17 +57,18 @@ dt {
 }
 
 /* ── Back link ── */
+/* header.tsx: text-sm text-muted-foreground hover:text-foreground mb-6 font-serif italic */
 
 .nb-back {
   display: inline-flex;
   align-items: center;
-  gap: 0.35rem;
+  gap: 0.5rem;
   font-family: serif;
   font-style: italic;
-  font-size: 0.9rem;
+  font-size: 0.875rem;
   color: #666;
   text-decoration: none;
-  margin: 0 auto 1rem;
+  margin: 0 auto 1.5rem;
   max-width: 34em;
   width: 100%;
 }
@@ -81,6 +82,8 @@ dt {
 }
 
 .nb-back svg {
+  width: 16px;
+  height: 16px;
   transition: transform 0.15s;
 }
 
@@ -89,46 +92,52 @@ dt {
 }
 
 /* ── Notebook Header Card ── */
+/* header.tsx: border border-border bg-card text-card-foreground p-6 rounded-sm shadow-sm */
 
 .nb-header {
-  border: 1px solid #ddd;
+  border: 1px solid #e5e5e5;
   background: #fff;
   padding: 1.5rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 0;
   width: 34em;
   margin-left: auto;
   margin-right: auto;
   box-sizing: border-box;
+  border-radius: 2px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
 }
 
+/* header.tsx: font-serif font-medium tracking-tight mb-2 text-center uppercase text-4xl */
 .nb-header-title {
-  font-family: "IBM Plex Sans", -apple-system, Helvetica, Arial, sans-serif;
-  font-weight: 600;
-  letter-spacing: 0.01em;
+  font-family: serif;
+  font-weight: 500;
+  letter-spacing: -0.025em;
   text-align: center;
   text-transform: uppercase;
-  margin: 0 0 0.25rem;
-  font-size: 1.75rem;
+  margin: 0 0 0.5rem;
+  font-size: 2.25rem;
 }
 
+/* header.tsx: text-center font-serif text-sm text-muted-foreground italic mb-6 */
 .nb-header-desc {
   text-align: center;
-  font-family: "IBM Plex Sans", -apple-system, Helvetica, Arial, sans-serif;
+  font-family: serif;
   font-style: italic;
   color: #666;
-  font-size: 0.85rem;
-  margin: 0 0 1rem;
+  font-size: 0.875rem;
+  margin: 0 0 1.5rem;
   max-width: 32em;
   margin-left: auto;
   margin-right: auto;
 }
 
+/* header.tsx: text-center mb-4, font-mono text-sm text-muted-foreground */
 .nb-header-dates {
   text-align: center;
   font-family: "IBM Plex Mono", monospace;
-  font-size: 0.6rem;
+  font-size: 0.875rem;
   color: #666;
-  margin-bottom: 0.75rem;
+  margin-bottom: 1rem;
   line-height: 1.3;
   white-space: nowrap;
   overflow: hidden;
@@ -144,44 +153,45 @@ dt {
   color: #999;
 }
 
-/* Metadata row: status, certainty, importance */
+/* header.tsx: flex flex-wrap justify-center items-center gap-x-3 text-sm font-mono mb-6 */
 .nb-meta {
   display: flex;
   flex-wrap: nowrap;
   justify-content: center;
   align-items: center;
-  gap: 0.15rem 0.5rem;
+  gap: 0 0.75rem;
   font-family: "IBM Plex Mono", monospace;
-  font-size: 0.8rem;
-  margin-bottom: 0.5rem;
+  font-size: 0.875rem;
+  margin-bottom: 1.5rem;
   white-space: nowrap;
 }
 
 .nb-meta .dot {
-  color: #999;
+  color: #666;
 }
 
+/* header.tsx: flex items-center gap-1 cursor-help */
 .nb-meta-item {
   position: relative;
   display: inline-flex;
   align-items: center;
   gap: 0.25rem;
   cursor: help;
-  color: #444;
 }
 
+/* header.tsx: Info icon h-3 w-3 */
 .nb-meta-item svg {
   width: 12px;
   height: 12px;
-  color: #999;
+  color: inherit;
   flex-shrink: 0;
 }
 
-.nb-meta-item:hover svg {
-  color: #444;
+.nb-meta-item span:not(.nb-popover) {
+  font-weight: 500;
 }
 
-/* Hover popover — pure CSS, no JS */
+/* header.tsx: HoverCardContent w-80 text-sm bg-card border-border p-4 font-serif */
 .nb-meta-item .nb-popover {
   visibility: hidden;
   opacity: 0;
@@ -189,20 +199,23 @@ dt {
   bottom: calc(100% + 8px);
   left: 50%;
   transform: translateX(-50%);
-  width: 280px;
+  width: 320px;
   background: #fff;
-  border: 1px solid #ddd;
-  padding: 0.75rem;
+  border: 1px solid #e5e5e5;
+  padding: 1rem;
   font-family: serif;
-  font-size: 0.8rem;
-  line-height: 1.55;
-  color: #444;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #666;
   z-index: 10;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
   text-align: left;
   cursor: default;
   transition: opacity 0.15s, visibility 0.15s;
   pointer-events: none;
+  white-space: normal;
+  border-radius: 2px;
 }
 
 .nb-meta-item:hover .nb-popover {
@@ -212,9 +225,9 @@ dt {
 }
 
 .nb-popover h4 {
-  margin: 0 0 0.35rem;
-  font-size: 0.85rem;
-  font-weight: 600;
+  margin: 0 0 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
   color: #111;
 }
 
@@ -223,24 +236,35 @@ dt {
   white-space: pre-wrap;
 }
 
-/* Decorative bottom line inside card */
+/* header.tsx page variant: mt-4 border-b border-border (inner) */
 .nb-header-rule {
   border: none;
-  border-top: 1px solid #ddd;
-  margin: 0.75rem 0 0;
+  border-top: 1px solid #e5e5e5;
+  margin: 0;
 }
 
-/* Color intensity by value */
+/* header.tsx: mt-6 border-b border-border (outer decorative line below card) */
+.nb-header-outer-rule {
+  border: none;
+  border-top: 1px solid #e5e5e5;
+  margin: 1.5rem auto 1.5rem;
+  width: 34em;
+  box-sizing: border-box;
+}
+
+/* Color intensity by value — maps to getStatusColor/getConfidenceColor/getImportanceColor grayscale */
 .meta-high    { color: #111; }
 .meta-mid     { color: #555; }
 .meta-low     { color: #999; }
 
 @media (max-width: 600px) {
-  .nb-header { padding: 1rem; }
-  .nb-header-title { font-size: 1.35rem; }
-  .nb-meta { font-size: 0.7rem; }
+  .nb-header { padding: 1rem; width: auto; max-width: 100%; }
+  .nb-header-title { font-size: 1.5rem; }
+  .nb-header-dates { font-size: 0.75rem; }
+  .nb-meta { font-size: 0.75rem; gap: 0 0.5rem; }
   .nb-meta-item .nb-popover {
-    width: 220px;
-    font-size: 0.75rem;
+    width: 240px;
+    font-size: 0.8rem;
   }
+  .nb-header-outer-rule { width: auto; }
 }

@@ -159,6 +159,7 @@ ${mathjaxBlock()}
   </div>
   <hr class="nb-header-rule">
 </div>
+<hr class="nb-header-outer-rule">
 
 <div class="text">
 <div class="left">
