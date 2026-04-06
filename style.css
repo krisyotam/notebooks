@@ -102,8 +102,8 @@ dt {
 }
 
 .nb-header-title {
-  font-family: serif;
-  font-weight: 500;
+  font-family: "IBM Plex Sans", -apple-system, Helvetica, Arial, sans-serif;
+  font-weight: 600;
   letter-spacing: 0.01em;
   text-align: center;
   text-transform: uppercase;
@@ -113,9 +113,10 @@ dt {
 
 .nb-header-desc {
   text-align: center;
+  font-family: "IBM Plex Sans", -apple-system, Helvetica, Arial, sans-serif;
   font-style: italic;
   color: #666;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   margin: 0 0 1rem;
   max-width: 32em;
   margin-left: auto;
@@ -124,9 +125,8 @@ dt {
 
 .nb-header-dates {
   text-align: center;
-  font-family: serif;
-  font-style: italic;
-  font-size: 0.8rem;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.6rem;
   color: #666;
   margin-bottom: 0.75rem;
   line-height: 1.3;

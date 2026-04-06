@@ -134,9 +134,9 @@ ${mathjaxBlock()}
   <h1 class="nb-header-title">${title}</h1>
   ${desc !== `${title} — notebook by Kris Yotam` ? `<p class="nb-header-desc">${escapeXml(description)}</p>` : ''}
   <div class="nb-header-dates">
-    <span>started ${formattedCreated}</span>
+    <span>started: ${formattedCreated}</span>
     <span class="sep">&middot;</span>
-    <span>last edited ${formattedUpdated}</span>
+    <span>last edited: ${formattedUpdated}</span>
   </div>
   <div class="nb-meta">
     <span class="nb-meta-item ${metaColor('status', status)}">
