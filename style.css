@@ -15,7 +15,9 @@ body {
 }
 
 .left {
-  text-align: left;
+  text-align: justify;
+  hyphens: auto;
+  -webkit-hyphens: auto;
 }
 
 .listing:first-of-type {
