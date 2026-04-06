@@ -44,8 +44,29 @@ hr {
   margin: 1em 0;
 }
 
-h1, h2, h3 {
+h1, h2, h3, h4 {
   font-weight: bold;
+}
+
+/* Body content headings — smaller than the header card title */
+.left h1 {
+  font-size: 1.25rem;
+  margin: 1.5em 0 0.5em;
+}
+
+.left h2 {
+  font-size: 1.1rem;
+  margin: 1.25em 0 0.5em;
+}
+
+.left h3 {
+  font-size: 1rem;
+  margin: 1em 0 0.4em;
+}
+
+.left h4 {
+  font-size: 0.9rem;
+  margin: 1em 0 0.4em;
 }
 
 dl {
