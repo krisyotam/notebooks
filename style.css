@@ -92,7 +92,7 @@ dt {
 
 .nb-header {
   border: 1px solid #ddd;
-  background: #fafafa;
+  background: #fff;
   padding: 1.5rem;
   margin-bottom: 1.5rem;
   width: 34em;
@@ -147,13 +147,14 @@ dt {
 /* Metadata row: status, certainty, importance */
 .nb-meta {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   justify-content: center;
   align-items: center;
   gap: 0.15rem 0.5rem;
   font-family: "IBM Plex Mono", monospace;
   font-size: 0.8rem;
   margin-bottom: 0.5rem;
+  white-space: nowrap;
 }
 
 .nb-meta .dot {
