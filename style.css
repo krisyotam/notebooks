@@ -159,9 +159,9 @@ dt {
   flex-wrap: nowrap;
   justify-content: center;
   align-items: center;
-  gap: 0 0.75rem;
+  gap: 0 0.5rem;
   font-family: "IBM Plex Mono", monospace;
-  font-size: 0.875rem;
+  font-size: 0.7rem;
   margin-bottom: 1.5rem;
   white-space: nowrap;
 }
@@ -181,8 +181,8 @@ dt {
 
 /* header.tsx: Info icon h-3 w-3 */
 .nb-meta-item svg {
-  width: 12px;
-  height: 12px;
+  width: 10px;
+  height: 10px;
   color: inherit;
   flex-shrink: 0;
 }
