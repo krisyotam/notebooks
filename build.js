@@ -196,14 +196,26 @@ ${mathjaxBlock()}
 </head>
 <body>
 
-<p></p><cite><a href="/notebooks/">Notebooks</a></cite>
+<div class="nb-wrapper">
+<a href="/notebooks/" class="nb-back">
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+  Return to Notebooks
+</a>
+
+<div class="nb-header">
+  <h1 class="nb-header-title">${title}</h1>
+  <div class="nb-header-dates">
+    <span>start: ${formattedCreated}</span>
+    <span class="sep">&middot;</span>
+    <span>end: ${formattedUpdated}</span>
+  </div>
+  <hr class="nb-header-rule">
+</div>
+<div class="nb-outer-rule"></div>
+</div>
 
 <div class="text">
 <div class="left">
-  <h2>${title}</h2>
-  <i>Last update: ${formattedUpdated}</i>
-  <br><i>First version: ${formattedCreated}</i>
-  <hr>
   ${renderedBody}
 </div>
 </div>
