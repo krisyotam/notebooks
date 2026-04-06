@@ -72,14 +72,27 @@ function mathjaxBlock() {
   <script src="${config.mathjaxUrl}" id="MathJax-script" async></script>`;
 }
 
-function notebookHtml(slug, title, formattedCreated, formattedUpdated, renderedBody) {
+function notebookHtml(slug, title, formattedCreated, formattedUpdated, renderedBody, description) {
+  const canonicalUrl = `https://krisyotam.com/notebooks/${slug}`;
+  const desc = description || `${title} — notebook by Kris Yotam`;
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="${escapeXml(desc)}">
+  <meta name="author" content="Kris Yotam">
+  <link rel="canonical" href="${canonicalUrl}">
+  <meta property="og:title" content="${escapeXml(title)}">
+  <meta property="og:description" content="${escapeXml(desc)}">
+  <meta property="og:url" content="${canonicalUrl}">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Kris's Notebooks">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="${escapeXml(title)}">
+  <meta name="twitter:description" content="${escapeXml(desc)}">
   <link href="/notebooks/style.css" rel="stylesheet">
-  <title>${title}</title>
+  <title>${title} — Kris's Notebooks</title>
 ${mathjaxBlock()}
 </head>
 <body>
@@ -179,6 +192,17 @@ function indexHtml(notebookEntries, hasFaq) {
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Kris Yotam's notebooks — abstracts, questions, reading lists, and notes on topics of interest.">
+  <meta name="author" content="Kris Yotam">
+  <link rel="canonical" href="https://krisyotam.com/notebooks/">
+  <meta property="og:title" content="${config.title}">
+  <meta property="og:description" content="Kris Yotam's notebooks — abstracts, questions, reading lists, and notes on topics of interest.">
+  <meta property="og:url" content="https://krisyotam.com/notebooks/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Kris's Notebooks">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="${config.title}">
+  <meta name="twitter:description" content="Kris Yotam's notebooks — abstracts, questions, reading lists, and notes on topics of interest.">
   <link href="style.css" rel="stylesheet">
   <title>${config.title}</title>
 </head>
@@ -261,21 +285,37 @@ const notebooks = files.map(file => {
   return {
     slug,
     title: data.title || slug,
+    description: data.description || '',
     created: data.created,
     updated: data.updated,
     renderedBody,
   };
 });
 
+// Parse custom date format (e.g. "2026-04-05T04:01pm") into a comparable Date
+function parseNotebookDate(d) {
+  const s = String(d);
+  const m = s.match(/(\d{4})-(\d{2})-(\d{2})(?:T(\d{1,2}):(\d{2})(am|pm)?)?/i);
+  if (!m) return new Date(0);
+  let [, year, mon, day, hrs = '0', min = '00', ampm] = m;
+  let h = parseInt(hrs, 10);
+  if (ampm) {
+    ampm = ampm.toLowerCase();
+    if (ampm === 'am' && h === 12) h = 0;
+    else if (ampm === 'pm' && h !== 12) h += 12;
+  }
+  return new Date(year, mon - 1, day, h, parseInt(min, 10));
+}
+
 // Sort by updated date, most recent first
-notebooks.sort((a, b) => new Date(b.updated) - new Date(a.updated));
+notebooks.sort((a, b) => parseNotebookDate(b.updated) - parseNotebookDate(a.updated));
 
 // Write per-notebook files to build/notebooks/
 for (const nb of notebooks) {
   const formattedCreated = formatDate(nb.created);
   const formattedUpdated = formatDate(nb.updated);
 
-  const html = notebookHtml(nb.slug, nb.title, formattedCreated, formattedUpdated, nb.renderedBody);
+  const html = notebookHtml(nb.slug, nb.title, formattedCreated, formattedUpdated, nb.renderedBody, nb.description);
   fs.writeFileSync(path.join(buildNotebooksDir, `${nb.slug}.html`), html);
 
   const rss = notebookRss(nb.slug, nb.title, formattedUpdated, nb.renderedBody, nb.updated);
