@@ -54,6 +54,38 @@ dt {
   margin: 0;
 }
 
+/* ── Back link ── */
+
+.nb-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: serif;
+  font-style: italic;
+  font-size: 0.9rem;
+  color: #666;
+  text-decoration: none;
+  margin: 0 auto 1rem;
+  max-width: 34em;
+  width: 100%;
+}
+
+.nb-back:visited {
+  color: #666;
+}
+
+.nb-back:hover {
+  color: #111;
+}
+
+.nb-back svg {
+  transition: transform 0.15s;
+}
+
+.nb-back:hover svg {
+  transform: translateX(-3px);
+}
+
 /* ── Notebook Header Card ── */
 
 .nb-header {
@@ -61,7 +93,7 @@ dt {
   background: #fafafa;
   padding: 1.5rem;
   margin-bottom: 1.5rem;
-  max-width: 34em;
+  width: 34em;
   margin-left: auto;
   margin-right: auto;
 }
