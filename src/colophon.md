@@ -1,7 +1,11 @@
 ---
 title: "Colophon"
+description: "Technical details on how the notebooks are built, composed, and served."
 created: 2026-04-04T09:31pm
 updated: 2026-04-04T11:36pm
+status: "Finished"
+certainty: "certain"
+importance: 2
 ---
 
 # On the Origin

@@ -184,7 +184,8 @@ ${mathjaxBlock()}
 </html>`;
 }
 
-function pageHtml(slug, title, formattedCreated, formattedUpdated, renderedBody) {
+function pageHtml(slug, title, formattedCreated, formattedUpdated, renderedBody, description, status, certainty, importance) {
+  const desc = description || '';
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -204,10 +205,30 @@ ${mathjaxBlock()}
 
 <div class="nb-header">
   <h1 class="nb-header-title">${title}</h1>
+  ${desc ? `<p class="nb-header-desc">${escapeXml(desc)}</p>` : ''}
   <div class="nb-header-dates">
     <span>start: ${formattedCreated}</span>
     <span class="sep">&middot;</span>
     <span>end: ${formattedUpdated}</span>
+  </div>
+  <div class="nb-meta">
+    <span class="nb-meta-item ${metaColor('status', status)}">
+      ${infoSvg}
+      <span>status: ${status}</span>
+      <span class="nb-popover"><h4>Status Indicator</h4><p>${escapeXml(STATUS_EXPLANATION)}</p></span>
+    </span>
+    <span class="dot">&middot;</span>
+    <span class="nb-meta-item ${metaColor('certainty', certainty)}">
+      ${infoSvg}
+      <span>certainty: ${certainty}</span>
+      <span class="nb-popover"><h4>Confidence Rating</h4><p>${escapeXml(CERTAINTY_EXPLANATION)}</p></span>
+    </span>
+    <span class="dot">&middot;</span>
+    <span class="nb-meta-item ${metaColor('importance', importance)}">
+      ${infoSvg}
+      <span>importance: ${importance}/10</span>
+      <span class="nb-popover"><h4>Importance Rating</h4><p>${escapeXml(IMPORTANCE_EXPLANATION)}</p></span>
+    </span>
   </div>
   <hr class="nb-header-rule">
 </div>
@@ -421,7 +442,7 @@ if (hasFaq) {
   const renderedBody = renderMarkdown(content);
   const formattedCreated = formatDate(data.created);
   const formattedUpdated = formatDate(data.updated);
-  const html = pageHtml('faq', data.title || 'FAQ', formattedCreated, formattedUpdated, renderedBody);
+  const html = pageHtml('faq', data.title || 'FAQ', formattedCreated, formattedUpdated, renderedBody, data.description || '', data.status || 'Draft', data.certainty || 'possible', parseInt(data.importance, 10) || 5);
   fs.writeFileSync(path.join(buildDir, 'faq.html'), html);
   console.log('  build/faq.html');
 }
@@ -434,7 +455,7 @@ if (hasColophon) {
   const renderedBody = renderMarkdown(content);
   const formattedCreated = formatDate(data.created);
   const formattedUpdated = formatDate(data.updated);
-  const html = pageHtml('colophon', data.title || 'Colophon', formattedCreated, formattedUpdated, renderedBody);
+  const html = pageHtml('colophon', data.title || 'Colophon', formattedCreated, formattedUpdated, renderedBody, data.description || '', data.status || 'Draft', data.certainty || 'possible', parseInt(data.importance, 10) || 5);
   fs.writeFileSync(path.join(buildDir, 'colophon.html'), html);
   console.log('  build/colophon.html');
 }
