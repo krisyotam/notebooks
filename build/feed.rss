@@ -4,7 +4,14 @@
     <title>Kris&apos;s Notebooks</title>
     <link>https://krisyotam.com/notebooks</link>
     <description>Kris&apos;s Notebooks by Kris Yotam</description>
-    <lastBuildDate>Sun, 05 Apr 2026 09:09:13 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 06 Apr 2026 18:03:54 GMT</lastBuildDate>
+    <item>
+      <title>Fae</title>
+      <link>https://krisyotam.com/notebooks/fae</link>
+      <guid>https://krisyotam.com/notebooks/fae</guid>
+      <pubDate>Invalid Date</pubDate>
+      <description>I&amp;#39;ve been interested in folklore for some time now, from the Kitsune, Yuki-onna, and Kappa as well as others such as the Dryads, Satyr, and Lamia. Fae have topped the list for some time. The elusive beings known as &amp;quot;Fae,&amp;quot; which seems to be an umbrella term rather than one that points at a specified subset of creature, are a sort of magical beings tied to nature. There are tons of things floating around about Fae such as &amp;quot;They can&amp;#39;t lie,&amp;quot; &amp;quot;They steal names&amp;quot; o...</description>
+    </item>
     <item>
       <title>Ada Lovelace</title>
       <link>https://krisyotam.com/notebooks/ada-lovelace</link>
@@ -12,21 +19,6 @@
       <pubDate>Invalid Date</pubDate>
       <description>Augusta Ada King, Countess of Lovelace was known for her work on the Analytical Engine. The general-purpose computer proposed by Charles Babbage. She was an English mathematician and writer. Born as the sole legitimate daughter of Lord Byron, the union of her parents was broken a month after her birth. Her mother Anne Isabella Noel Byron, 11th Baroness Wentworth and Baroness Byron, who was nicknamed Annabella and referred to as Lady Byron, was a philanthropist and educational reformer.
 Ada&amp;#39;s...</description>
-    </item>
-    <item>
-      <title>Nonparametric Regression</title>
-      <link>https://krisyotam.com/notebooks/nonparametric-regression</link>
-      <guid>https://krisyotam.com/notebooks/nonparametric-regression</guid>
-      <pubDate>Invalid Date</pubDate>
-      <description>Methods for estimating regression functions without assuming a parametric form for the relationship between predictors and response. The function is estimated directly from data, with smoothness controlled by a bandwidth or tuning parameter rather than a fixed model. Covers kernel regression, local polynomial fitting, splines, and related approaches. Connects to density-estimation and smoothing-splines.
-See Also
-
-Density Estimation
-Gaussian Processes
-
-Recommended
-
-Wand, M. P. and Jones, M. C. Ke...</description>
     </item>
   </channel>
 </rss>

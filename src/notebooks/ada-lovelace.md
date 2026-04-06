@@ -1,7 +1,11 @@
 ---
 title: "Ada Lovelace"
+description: "Notes on Ada Lovelace, her education under De Morgan, and her work on Babbage's Analytical Engine."
 created: 2026-04-04T11:11pm
 updated: 2026-04-04T11:11pm
+status: "In Progress"
+certainty: "likely"
+importance: 6
 ---
 
 Augusta Ada King, Countess of Lovelace was known for her work on the [Analytical Engine](https://en.wikipedia.org/wiki/Analytical_engine). The general-purpose computer proposed by [Charles Babbage](https://en.wikipedia.org/wiki/Charles_Babbage). She was an English mathematician and writer. Born as the sole legitimate daughter of Lord Byron, the union of her parents was broken a month after her birth. Her mother [Anne Isabella Noel Byron, 11th Baroness Wentworth and Baroness Byron](https://en.wikipedia.org/wiki/Lady_Byron), who was nicknamed Annabella and referred to as **Lady Byron**, was a philanthropist and educational reformer.

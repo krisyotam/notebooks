@@ -3,6 +3,9 @@ title: "Fae"
 description: "Notes on fairy folklore: Oberon, Titania, Queen Mab, and the Fae tradition from Shakespeare and King James to modern mythology."
 created: 2026-04-05T04:01pm
 updated: 2026-04-05T04:01pm
+status: "In Progress"
+certainty: "possible"
+importance: 5
 ---
 
 I've been interested in folklore for some time now, from the [Kitsune](https://en.wikipedia.org/wiki/Kitsune), [Yuki-onna](https://en.wikipedia.org/wiki/Yuki-onna), and [Kappa](https://en.wikipedia.org/wiki/Kappa_(folklore)) as well as others such as the [Dryads](https://en.wikipedia.org/wiki/Dryad), [Satyr](https://en.wikipedia.org/wiki/Satyr), and [Lamia](https://en.wikipedia.org/wiki/Lamia). [Fae](https://en.wikipedia.org/wiki/Fairy) have topped the list for some time. The elusive beings known as "Fae," which seems to be an umbrella term rather than one that points at a specified subset of creature, are a sort of magical beings tied to nature. There are tons of things floating around about Fae such as "They can't lie," "They steal names" or even children, "They hate iron," and even that they are morally neutral or tricksters. Two separate fae can be diametrically opposed in portrayal as they are subject to the narrative of the teller.

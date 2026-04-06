@@ -72,7 +72,35 @@ function mathjaxBlock() {
   <script src="${config.mathjaxUrl}" id="MathJax-script" async></script>`;
 }
 
-function notebookHtml(slug, title, formattedCreated, formattedUpdated, renderedBody, description) {
+var infoSvg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>';
+
+var STATUS_EXPLANATION = 'The status indicator reflects the current state of the work:\n\n- Abandoned: Work that has been discontinued\n- Notes: Initial collections of thoughts and references\n- Draft: Early structured version with a central thesis\n- In Progress: Well-developed work actively being refined\n- Finished: Completed work with no planned major changes\n\nThis helps readers understand the maturity and completeness of the content.';
+
+var CERTAINTY_EXPLANATION = 'The confidence tag expresses how well-supported the content is, or how likely its overall ideas are right. This uses a scale from "impossible" to "certain", based on the Kesselman List of Estimative Words:\n\n1. "certain"\n2. "highly likely"\n3. "likely"\n4. "possible"\n5. "unlikely"\n6. "highly unlikely"\n7. "remote"\n8. "impossible"\n\nEven ideas that seem unlikely may be worth exploring if their potential impact is significant enough.';
+
+var IMPORTANCE_EXPLANATION = 'The importance rating distinguishes between trivial topics and those which might change your life. Using a scale from 0-10, content is ranked based on its potential impact on:\n\n- the reader\n- the intended audience\n- the world at large\n\nFor example, topics about fundamental research or transformative technologies would rank 9-10, while personal reflections or minor experiments might rank 0-1.';
+
+function metaColor(type, value) {
+  if (type === 'status') {
+    if (['Finished','Published','Active'].includes(value)) return 'meta-high';
+    if (['In Progress','Draft'].includes(value)) return 'meta-mid';
+    return 'meta-low';
+  }
+  if (type === 'certainty') {
+    if (['certain','highly likely'].includes(value)) return 'meta-high';
+    if (['likely','possible'].includes(value)) return 'meta-mid';
+    return 'meta-low';
+  }
+  if (type === 'importance') {
+    var n = parseInt(value, 10);
+    if (n >= 7) return 'meta-high';
+    if (n >= 4) return 'meta-mid';
+    return 'meta-low';
+  }
+  return 'meta-mid';
+}
+
+function notebookHtml(slug, title, formattedCreated, formattedUpdated, renderedBody, description, status, certainty, importance) {
   const canonicalUrl = `https://krisyotam.com/notebooks/${slug}`;
   const desc = description || `${title} — notebook by Kris Yotam`;
   return `<!DOCTYPE html>
@@ -99,12 +127,38 @@ ${mathjaxBlock()}
 
 <p></p><cite><a href="/notebooks/">Notebooks</a></cite>
 
+<div class="nb-header">
+  <h1 class="nb-header-title">${title}</h1>
+  ${desc !== `${title} — notebook by Kris Yotam` ? `<p class="nb-header-desc">${escapeXml(description)}</p>` : ''}
+  <div class="nb-header-dates">
+    <span>started ${formattedCreated}</span>
+    <span class="sep">&middot;</span>
+    <span>last edited ${formattedUpdated}</span>
+  </div>
+  <div class="nb-meta">
+    <span class="nb-meta-item ${metaColor('status', status)}">
+      ${infoSvg}
+      <span>status: ${status}</span>
+      <span class="nb-popover"><h4>Status Indicator</h4><p>${escapeXml(STATUS_EXPLANATION)}</p></span>
+    </span>
+    <span class="dot">&middot;</span>
+    <span class="nb-meta-item ${metaColor('certainty', certainty)}">
+      ${infoSvg}
+      <span>certainty: ${certainty}</span>
+      <span class="nb-popover"><h4>Confidence Rating</h4><p>${escapeXml(CERTAINTY_EXPLANATION)}</p></span>
+    </span>
+    <span class="dot">&middot;</span>
+    <span class="nb-meta-item ${metaColor('importance', importance)}">
+      ${infoSvg}
+      <span>importance: ${importance}/10</span>
+      <span class="nb-popover"><h4>Importance Rating</h4><p>${escapeXml(IMPORTANCE_EXPLANATION)}</p></span>
+    </span>
+  </div>
+  <hr class="nb-header-rule">
+</div>
+
 <div class="text">
 <div class="left">
-  <h2>${title}</h2>
-  <i>Last update: ${formattedUpdated}</i>
-  <br><i>First version: ${formattedCreated}</i>
-  <hr>
   ${renderedBody}
 </div>
 </div>
@@ -288,6 +342,9 @@ const notebooks = files.map(file => {
     description: data.description || '',
     created: data.created,
     updated: data.updated,
+    status: data.status || 'Draft',
+    certainty: data.certainty || 'possible',
+    importance: parseInt(data.importance, 10) || 5,
     renderedBody,
   };
 });
@@ -315,7 +372,7 @@ for (const nb of notebooks) {
   const formattedCreated = formatDate(nb.created);
   const formattedUpdated = formatDate(nb.updated);
 
-  const html = notebookHtml(nb.slug, nb.title, formattedCreated, formattedUpdated, nb.renderedBody, nb.description);
+  const html = notebookHtml(nb.slug, nb.title, formattedCreated, formattedUpdated, nb.renderedBody, nb.description, nb.status, nb.certainty, nb.importance);
   fs.writeFileSync(path.join(buildNotebooksDir, `${nb.slug}.html`), html);
 
   const rss = notebookRss(nb.slug, nb.title, formattedUpdated, nb.renderedBody, nb.updated);
