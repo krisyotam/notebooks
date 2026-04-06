@@ -60,7 +60,7 @@ dt {
 /* header.tsx: text-sm text-muted-foreground hover:text-foreground mb-6 font-serif italic */
 
 .nb-back {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   gap: 0.5rem;
   font-family: serif;
@@ -68,9 +68,9 @@ dt {
   font-size: 0.875rem;
   color: #666;
   text-decoration: none;
+  width: 34em;
   margin: 0 auto 1.5rem;
-  max-width: 34em;
-  width: 100%;
+  box-sizing: border-box;
 }
 
 .nb-back:visited {
