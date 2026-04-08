@@ -304,7 +304,7 @@ function indexHtml(notebookEntries, hasFaq) {
 <div class="text">
 <div class="left">
 
-<h1>${config.title}</h1>
+<h1 class="nb-index-title">${config.title}</h1>
 
 <blockquote><center><em>These are my fancies, by which
 	<br>I endeavor not to make things known

@@ -54,6 +54,12 @@ h1, h2, h3, h4 {
   margin: 1.5em 0 0.5em;
 }
 
+/* Index page site title — keep default h1 sizing */
+.left h1.nb-index-title {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
 .left h2 {
   font-size: 1.1rem;
   margin: 1.25em 0 0.5em;
