@@ -44,3 +44,18 @@ Another useful correction is that surrounding Ramanujan's **Lost Notebook**, whi
 
 ### Biography
 - Kanigel, Robert, *The Man Who Knew Infinity* (Scribner, 1991)
+
+<div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 24px 0;">
+  <figure style="margin: 0; text-align: center;">
+    <img src="https://krisyotam.com/cdn/images/notebooks/srinivasa-ramanujan/ramanujan-portrait.jpeg" alt="Srinivasa Ramanujan portrait photograph" style="width: 100%; height: 200px; object-fit: cover;">
+    <figcaption style="font-size: 0.8em; color: #666; margin-top: 4px;">Srinivasa Ramanujan (1887–1920)</figcaption>
+  </figure>
+  <figure style="margin: 0; text-align: center;">
+    <img src="https://krisyotam.com/cdn/images/notebooks/srinivasa-ramanujan/trinity-college-wren-library.jpg" alt="Trinity College Wren Library, Cambridge" style="width: 100%; height: 200px; object-fit: cover;">
+    <figcaption style="font-size: 0.8em; color: #666; margin-top: 4px;">Trinity College, Cambridge</figcaption>
+  </figure>
+  <figure style="margin: 0; text-align: center;">
+    <img src="https://krisyotam.com/cdn/images/notebooks/srinivasa-ramanujan/eastern-general-hospital-1914.jpg" alt="1st Eastern General Hospital at Trinity College, 1914" style="width: 100%; height: 200px; object-fit: cover;">
+    <figcaption style="font-size: 0.8em; color: #666; margin-top: 4px;">1st Eastern General Hospital, Trinity College, 1914</figcaption>
+  </figure>
+</div>
