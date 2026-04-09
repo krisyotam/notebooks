@@ -1,0 +1,34 @@
+name: Build Notebooks
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - 'src/**/*.md'
+      - 'config.json'
+      - 'build.js'
+      - 'style.css'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - run: npm ci
+
+      - run: node build.js
+
+      - name: Commit build output
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add build/ index.html
+          git diff --cached --quiet || git commit -m "Rebuild notebooks"
+          git push
