@@ -78,19 +78,23 @@ h1, h2, h3, h4 {
 /* ── Index intro compaction ── */
 .text blockquote {
   margin: 0.3em 0;
-  font-size: 0.85em;
-  line-height: 1.35;
+  font-size: 0.9em;
+  line-height: 1.4;
+}
+
+.text blockquote + blockquote {
+  margin-top: 0.6em;
 }
 
 .text p {
   margin: 0.3em 0;
-  font-size: 0.9em;
+  font-size: 0.95em;
   line-height: 1.4;
 }
 
 .text center {
   margin-top: 0.2em;
-  font-size: 0.9em;
+  font-size: 0.95em;
 }
 
 dl {
