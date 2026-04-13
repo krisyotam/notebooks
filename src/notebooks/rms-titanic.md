@@ -63,4 +63,16 @@ There are a few conspiracies related to the sinking of the Titanic. I will only 
     <img src="https://krisyotam.com/cdn/images/notebooks/rms-titanic/500px-Titanic's_sinking_stern.jpg" alt="Titanic sinking stern illustration" style="width: 100%; height: 200px; object-fit: cover;">
     <figcaption style="font-size: 0.8em; color: #666; margin-top: 4px;">Illustration of the Titanic's stern rising during the sinking.</figcaption>
   </figure>
+  <figure style="margin: 0; text-align: center;">
+    <img src="https://krisyotam.com/cdn/images/notebooks/rms-titanic/grand-staircase.jpg" alt="Titanic Grand Staircase" style="width: 100%; height: 200px; object-fit: cover;">
+    <figcaption style="font-size: 0.8em; color: #666; margin-top: 4px;">The Grand Staircase aboard the RMS Titanic.</figcaption>
+  </figure>
+  <figure style="margin: 0; text-align: center;">
+    <img src="https://krisyotam.com/cdn/images/notebooks/rms-titanic/grandreceptionroom.jpg" alt="Titanic Grand Reception Room" style="width: 100%; height: 200px; object-fit: cover;">
+    <figcaption style="font-size: 0.8em; color: #666; margin-top: 4px;">The Grand Reception Room.</figcaption>
+  </figure>
+  <figure style="margin: 0; text-align: center;">
+    <img src="https://krisyotam.com/cdn/images/notebooks/rms-titanic/first-class-reading-and-writing-room.jpg" alt="Titanic first-class reading and writing room" style="width: 100%; height: 200px; object-fit: cover;">
+    <figcaption style="font-size: 0.8em; color: #666; margin-top: 4px;">First-class reading and writing room.</figcaption>
+  </figure>
 </div>
