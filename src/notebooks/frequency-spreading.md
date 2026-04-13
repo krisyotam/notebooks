@@ -8,9 +8,7 @@ certainty: "likely"
 importance: 5
 ---
 
-One of the most infuriating things about modern PCs, barring RGB, is the tonal noise of fans. That continually amplified jet engine sound while you're trying to think. It's been my mission for a while to free myself from this. I think I've finally found a workable solution, or rather taken one from the 2019 Mac Pro 7,1. That is **frequency spreading**, which in Apple's case is asymmetric blade spacing (sometimes called blade randomization). The fan blades are physically distributed at non-uniform angles so that the blade pass frequency energy spreads across a broad spectrum rather than concentrating at a single tone and its harmonics. The result is broadband noise instead of tonal whine. Apple's VP John Ternus credited the technique as borrowed "almost entirely from automobile tires," which use randomized tread block spacing for the same reason.
-
-A related but distinct technique is **RPM offset**, popularized by Noctua: running multiple fans at slightly different speeds (50-200 RPM apart) to avoid beat frequencies, the pulsing amplitude modulation you hear when two fans of the same model spin at nearly identical speeds. Both techniques aim to make fan noise less perceptible, but they solve different problems. Blade randomization eliminates tonal peaks. RPM offset eliminates beating.
+One of the most infuriating things about modern PCs, barring RGB, is the harmonic resonance of fans. That continually amplified jet engine sound while you're trying to think. It's been my mission for a while to free myself from this. I finally think I've found an ample solution, or rather taken on one from the 2019 Mac Pro 7,1. That is **frequency spreading**, which is technically just resonance avoidance via RPM offset.
 
 ## Notes
 -
