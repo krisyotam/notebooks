@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Fan noise mitigation through asymmetric blade spacing and RPM offset, as implemented in the Mac Pro 7,1.">
+  <meta name="author" content="Kris Yotam">
+  <link rel="canonical" href="https://krisyotam.com/notebooks/frequency-spreading">
+  <meta property="og:title" content="Frequency Spreading">
+  <meta property="og:description" content="Fan noise mitigation through asymmetric blade spacing and RPM offset, as implemented in the Mac Pro 7,1.">
+  <meta property="og:url" content="https://krisyotam.com/notebooks/frequency-spreading">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Kris's Notebooks">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Frequency Spreading">
+  <meta name="twitter:description" content="Fan noise mitigation through asymmetric blade spacing and RPM offset, as implemented in the Mac Pro 7,1.">
+  <link href="/notebooks/style.css" rel="stylesheet">
+  <title>Frequency Spreading — Kris's Notebooks</title>
+  <script>
+    MathJax = { tex: { inlineMath: [['$','$'],['\\(','\\)']] } };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" id="MathJax-script" async></script>
+</head>
+<body>
+
+<div class="nb-wrapper">
+<a href="/notebooks/" class="nb-back">
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+  Return to Notebooks
+</a>
+
+<div class="nb-header">
+  <h1 class="nb-header-title">Frequency Spreading</h1>
+  <p class="nb-header-desc">Fan noise mitigation through asymmetric blade spacing and RPM offset, as implemented in the Mac Pro 7,1.</p>
+  <div class="nb-header-dates">
+    <span>start: 2026.04.13, 15:50</span>
+    <span class="sep">&middot;</span>
+    <span>end: 2026.04.13, 15:50</span>
+  </div>
+  <div class="nb-meta">
+    <span class="nb-meta-item meta-mid">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+      <span>status: In Progress</span>
+      <span class="nb-popover"><h4>Status Indicator</h4><p>The status indicator reflects the current state of the work:
+
+- Abandoned: Work that has been discontinued
+- Notes: Initial collections of thoughts and references
+- Draft: Early structured version with a central thesis
+- In Progress: Well-developed work actively being refined
+- Finished: Completed work with no planned major changes
+
+This helps readers understand the maturity and completeness of the content.</p></span>
+    </span>
+    <span class="dot">&middot;</span>
+    <span class="nb-meta-item meta-mid">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+      <span>certainty: likely</span>
+      <span class="nb-popover"><h4>Confidence Rating</h4><p>The confidence tag expresses how well-supported the content is, or how likely its overall ideas are right. This uses a scale from &quot;impossible&quot; to &quot;certain&quot;, based on the Kesselman List of Estimative Words:
+
+1. &quot;certain&quot;
+2. &quot;highly likely&quot;
+3. &quot;likely&quot;
+4. &quot;possible&quot;
+5. &quot;unlikely&quot;
+6. &quot;highly unlikely&quot;
+7. &quot;remote&quot;
+8. &quot;impossible&quot;
+
+Even ideas that seem unlikely may be worth exploring if their potential impact is significant enough.</p></span>
+    </span>
+    <span class="dot">&middot;</span>
+    <span class="nb-meta-item meta-mid">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+      <span>importance: 5/10</span>
+      <span class="nb-popover"><h4>Importance Rating</h4><p>The importance rating distinguishes between trivial topics and those which might change your life. Using a scale from 0-10, content is ranked based on its potential impact on:
+
+- the reader
+- the intended audience
+- the world at large
+
+For example, topics about fundamental research or transformative technologies would rank 9-10, while personal reflections or minor experiments might rank 0-1.</p></span>
+    </span>
+  </div>
+  <hr class="nb-header-rule">
+</div>
+<div class="nb-outer-rule"></div>
+</div>
+
+<div class="text">
+<div class="left">
+  <p>One of the most infuriating things about modern PCs, barring RGB, is the tonal noise of fans. That continually amplified jet engine sound while you&#39;re trying to think. It&#39;s been my mission for a while to free myself from this. I think I&#39;ve finally found a workable solution, or rather taken one from the 2019 Mac Pro 7,1. That is <strong>frequency spreading</strong>, which in Apple&#39;s case is asymmetric blade spacing (sometimes called blade randomization). The fan blades are physically distributed at non-uniform angles so that the blade pass frequency energy spreads across a broad spectrum rather than concentrating at a single tone and its harmonics. The result is broadband noise instead of tonal whine. Apple&#39;s VP John Ternus credited the technique as borrowed &quot;almost entirely from automobile tires,&quot; which use randomized tread block spacing for the same reason.</p>
+<p>A related but distinct technique is <strong>RPM offset</strong>, popularized by Noctua: running multiple fans at slightly different speeds (50-200 RPM apart) to avoid beat frequencies, the pulsing amplitude modulation you hear when two fans of the same model spin at nearly identical speeds. Both techniques aim to make fan noise less perceptible, but they solve different problems. Blade randomization eliminates tonal peaks. RPM offset eliminates beating.</p>
+<h2>Notes</h2>
+<ul>
+<li></li>
+</ul>
+<h2>See Also</h2>
+<h3>To Read</h3>
+<p><strong>Foundational</strong></p>
+<ul>
+<li>Lord Rayleigh, <em>The Theory of Sound</em>, 2 vols. (1877-1878)</li>
+<li>Fletcher &amp; Munson, &quot;Loudness, Its Definition, Measurement and Calculation,&quot; <em>Journal of the Acoustical Society of America</em> (1933)</li>
+<li>Leo Beranek &amp; Istvan Ver (eds.), <em>Noise and Vibration Control Engineering</em> (1992, Wiley)</li>
+<li>J.P. Den Hartog, <em>Mechanical Vibrations</em>, 4th ed. (1956, McGraw-Hill)</li>
+<li>Lawrence Kinsler et al., <em>Fundamentals of Acoustics</em>, 4th ed. (2000, Wiley)</li>
+</ul>
+<p><strong>Papers</strong></p>
+<ul>
+<li>Lipshitz, Wannamaker &amp; Vanderkooy, &quot;Quantization and Dither: A Theoretical Survey,&quot; <em>Journal of the Audio Engineering Society</em> (1992)</li>
+<li>Frank Fahy &amp; Paolo Gardonio, <em>Sound and Structural Vibration</em>, 2nd ed. (2007, Academic Press)</li>
+<li>Zwicker &amp; Fastl, <em>Psychoacoustics: Facts and Models</em>, 3rd ed. (2007, Springer)</li>
+</ul>
+<p><strong>Engineering Reference</strong></p>
+<ul>
+<li>ISO 10302: Acoustics - Measurement of Airborne Noise Emitted and Structure-Borne Vibration Induced by Small Air-Moving Devices</li>
+<li>Bernard Widrow &amp; Istvan Kollar, <em>Quantization Noise</em> (2008, Cambridge University Press)</li>
+</ul>
+<div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 24px 0;">
+  <figure style="margin: 0; text-align: center;">
+    <img src="https://krisyotam.com/cdn/images/notebooks/frequency-spreading/mac-pro-7-1-internals-gpu.jpeg" alt="Mac Pro 7,1 internals with GPU installed" style="width: 100%; height: 200px; object-fit: cover;">
+    <figcaption style="font-size: 0.8em; color: #666; margin-top: 4px;">Mac Pro 7,1 internals with Sapphire RX 6900 XT.</figcaption>
+  </figure>
+  <figure style="margin: 0; text-align: center;">
+    <img src="https://krisyotam.com/cdn/images/notebooks/frequency-spreading/mac-pro-7-1-rear-open.jpeg" alt="Mac Pro 7,1 rear view with case open" style="width: 100%; height: 200px; object-fit: cover;">
+    <figcaption style="font-size: 0.8em; color: #666; margin-top: 4px;">Mac Pro 7,1, rear view open.</figcaption>
+  </figure>
+  <figure style="margin: 0; text-align: center;">
+    <img src="https://krisyotam.com/cdn/images/notebooks/frequency-spreading/mac-pro-7-1-triple-fan-array.webp" alt="Mac Pro 7,1 triple fan array with asymmetric blade spacing" style="width: 100%; height: 200px; object-fit: cover;">
+    <figcaption style="font-size: 0.8em; color: #666; margin-top: 4px;">Mac Pro 7,1 triple fan array, the blades use asymmetric spacing.</figcaption>
+  </figure>
+</div>
+
+</div>
+</div>
+
+<div class="text">
+<div class="left">
+  <hr>
+  <p style="display:flex;justify-content:space-between">
+    <a href="/notebooks/frequency-spreading">permanent link</a>
+    <cite><a href="/notebooks/">Notebooks</a></cite>
+    <a href="/notebooks/frequency-spreading.rss">RSS feed</a>
+  </p>
+</div>
+</div>
+
+</body>
+</html>
