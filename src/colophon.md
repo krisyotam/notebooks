@@ -16,6 +16,4 @@ The inspiration for bringing the Libers/notebooks back was actually [Gwern](http
 
 It was the most helpful advice, as I have seen a roughly 3x on my passion coming back even as a chronic anhedonic. I am looking forward to the surgical removal of all of these rabbit holes from my head. Writing them down seems to double as therapy, as a sense of relief is gained almost as if the ideas have literally been lifted, reducing a physical pressure on my hippocampus.
 
-## Technical Details
-
 The notebooks are a module of [krisyotam.com](https://krisyotam.com), served at the `/notebooks/` subpath. Each notebook is a single markdown file with YAML frontmatter (title, description, created, updated, status, certainty, importance). A Node.js build script reads the source files, parses them with gray-matter and marked, and outputs static HTML and per-notebook RSS feeds. There is no framework, no client-side JavaScript beyond MathJax, and no database. The build runs on the same Arch Linux server that hosts the main site. Images are stored on the CDN at `/mnt/storage/cdn/images/notebooks/` and referenced by URL.
