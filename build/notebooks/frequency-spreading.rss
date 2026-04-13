@@ -10,7 +10,16 @@
       <link>https://krisyotam.com/notebooks/frequency-spreading</link>
       <guid>https://krisyotam.com/notebooks/frequency-spreading</guid>
       <pubDate>Invalid Date</pubDate>
-      <description>One of the most infuriating things about modern PCs, barring RGB, is the tonal noise of fans. That continually amplified jet engine sound while you&amp;#39;re trying to think. It&amp;#39;s been my mission for a while to free myself from this. I think I&amp;#39;ve finally found a workable solution, or rather taken one from the 2019 Mac Pro 7,1. That is frequency spreading, which in Apple&amp;#39;s case is asymmetric blade spacing (sometimes called blade randomization). The fan blades are physically distributed a...</description>
+      <description>One of the most infuriating things about modern PCs, barring RGB, is the harmonic resonance of fans. That continually amplified jet engine sound while you&amp;#39;re trying to think. It&amp;#39;s been my mission for a while to free myself from this. I finally think I&amp;#39;ve found an ample solution, or rather taken on one from the 2019 Mac Pro 7,1. That is frequency spreading, which is technically just resonance avoidance via RPM offset.
+Notes
+
+
+
+See Also
+To Read
+Foundational
+
+Lord Rayleigh, The Theory o...</description>
     </item>
   </channel>
 </rss>
