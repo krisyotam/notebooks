@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Bradley-Terry Model</title>
+    <link>https://krisyotam.com/notebooks/bradley-terry-model</link>
+    <description>Bradley-Terry Model notebook</description>
+    <lastBuildDate>Invalid Date</lastBuildDate>
+    <item>
+      <title>Bradley-Terry Model</title>
+      <link>https://krisyotam.com/notebooks/bradley-terry-model</link>
+      <guid>https://krisyotam.com/notebooks/bradley-terry-model</guid>
+      <pubDate>Invalid Date</pubDate>
+      <description>Recently I have been attempting to rank my favorite things, including films, anime, manga, directors, artists, and so on. The cognitive overhead for a task like this is immense. Rather than trying to assign arbitrary numbers to each item and refining them down to the tenth or hundredth manually to create separation within condensed tiers, I decided to consider ranking items via paired comparisons. There are a few options for this, such as Elo, Copeland&amp;#39;s method, TrueSkill, and of course the ...</description>
+    </item>
+  </channel>
+</rss>

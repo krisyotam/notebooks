@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Notes on the Bradley-Terry model for ranking items via paired comparisons, its formula, and applications to personal preference ranking.">
+  <meta name="author" content="Kris Yotam">
+  <link rel="canonical" href="https://krisyotam.com/notebooks/bradley-terry-model">
+  <meta property="og:title" content="Bradley-Terry Model">
+  <meta property="og:description" content="Notes on the Bradley-Terry model for ranking items via paired comparisons, its formula, and applications to personal preference ranking.">
+  <meta property="og:url" content="https://krisyotam.com/notebooks/bradley-terry-model">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Kris's Notebooks">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Bradley-Terry Model">
+  <meta name="twitter:description" content="Notes on the Bradley-Terry model for ranking items via paired comparisons, its formula, and applications to personal preference ranking.">
+  <link href="/notebooks/style.css" rel="stylesheet">
+  <title>Bradley-Terry Model — Kris's Notebooks</title>
+  <script>
+    MathJax = { tex: { inlineMath: [['$','$'],['\\(','\\)']] } };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" id="MathJax-script" async></script>
+</head>
+<body>
+
+<div class="nb-wrapper">
+<a href="/notebooks/" class="nb-back">
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+  Return to Notebooks
+</a>
+
+<div class="nb-header">
+  <h1 class="nb-header-title">Bradley-Terry Model</h1>
+  <p class="nb-header-desc">Notes on the Bradley-Terry model for ranking items via paired comparisons, its formula, and applications to personal preference ranking.</p>
+  <div class="nb-header-dates">
+    <span>start: 2026.04.15, 12:00</span>
+    <span class="sep">&middot;</span>
+    <span>end: 2026.04.15, 12:00</span>
+  </div>
+  <div class="nb-meta">
+    <span class="nb-meta-item meta-low">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+      <span>status: Notes</span>
+      <span class="nb-popover"><h4>Status Indicator</h4><p>The status indicator reflects the current state of the work:
+
+- Abandoned: Work that has been discontinued
+- Notes: Initial collections of thoughts and references
+- Draft: Early structured version with a central thesis
+- In Progress: Well-developed work actively being refined
+- Finished: Completed work with no planned major changes
+
+This helps readers understand the maturity and completeness of the content.</p></span>
+    </span>
+    <span class="dot">&middot;</span>
+    <span class="nb-meta-item meta-mid">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+      <span>certainty: likely</span>
+      <span class="nb-popover"><h4>Confidence Rating</h4><p>The confidence tag expresses how well-supported the content is, or how likely its overall ideas are right. This uses a scale from &quot;impossible&quot; to &quot;certain&quot;, based on the Kesselman List of Estimative Words:
+
+1. &quot;certain&quot;
+2. &quot;highly likely&quot;
+3. &quot;likely&quot;
+4. &quot;possible&quot;
+5. &quot;unlikely&quot;
+6. &quot;highly unlikely&quot;
+7. &quot;remote&quot;
+8. &quot;impossible&quot;
+
+Even ideas that seem unlikely may be worth exploring if their potential impact is significant enough.</p></span>
+    </span>
+    <span class="dot">&middot;</span>
+    <span class="nb-meta-item meta-high">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+      <span>importance: 7/10</span>
+      <span class="nb-popover"><h4>Importance Rating</h4><p>The importance rating distinguishes between trivial topics and those which might change your life. Using a scale from 0-10, content is ranked based on its potential impact on:
+
+- the reader
+- the intended audience
+- the world at large
+
+For example, topics about fundamental research or transformative technologies would rank 9-10, while personal reflections or minor experiments might rank 0-1.</p></span>
+    </span>
+  </div>
+  <hr class="nb-header-rule">
+</div>
+<div class="nb-outer-rule"></div>
+</div>
+
+<div class="text">
+<div class="left">
+  <p>Recently I have been attempting to rank my favorite things, including films, anime, manga, directors, artists, and so on. The cognitive overhead for a task like this is immense. Rather than trying to assign arbitrary numbers to each item and refining them down to the tenth or hundredth manually to create separation within condensed tiers, I decided to consider ranking items via paired comparisons. There are a few options for this, such as <a href="https://en.wikipedia.org/wiki/Elo_rating_system">Elo</a>, <a href="https://en.wikipedia.org/wiki/Copeland%27s_method">Copeland&#39;s method</a>, <a href="https://en.wikipedia.org/wiki/TrueSkill">TrueSkill</a>, and of course the model I have landed on: the Bradley-Terry model.</p>
+<p>A simple formula for determining which of two items $i$ or $j$ is more likely to be chosen between them. The probability $\Pr(i &gt; j)$ that item $i$ is preferred over item $j$ is given by:</p>
+<p>$$\Pr(i &gt; j) = \frac{p_i}{p_i + p_j}$$</p>
+<p>where $p_i$ and $p_j$ are positive real-valued parameters representing the &quot;strength&quot; or &quot;merit&quot; of items $i$ and $j$ respectively. The model assumes that each item $i$ in a set of $n$ items has an associated parameter $p_i &gt; 0$, and that the outcome of any pairwise comparison depends only on the ratio $p_i / p_j$. Since only ratios matter, the parameters are identifiable only up to a multiplicative constant, so one typically normalizes by setting $\sum_{i=1}^{n} p_i = 1$ or fixing one parameter.</p>
+<p>Given a dataset of paired comparison outcomes, the parameters $p_1, p_2, \ldots, p_n$ are estimated by maximum likelihood. If $w_{ij}$ denotes the number of times item $i$ was preferred over item $j$, the log-likelihood is:</p>
+<p>$$\ell(p) = \sum_{i \neq j} w_{ij} \log \frac{p_i}{p_i + p_j}$$</p>
+<p>This is a concave function in the log-transformed parameters $\lambda_i = \log p_i$, which guarantees a unique global maximum (up to the normalization constraint) whenever the comparison graph is connected.</p>
+<h2>To Read</h2>
+<h3>Recommended</h3>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Bradley%E2%80%93Terry_model">Bradley-Terry model</a>, Wikipedia — a genuinely good overview for a simple topic</li>
+</ul>
+<h3>Primary Sources</h3>
+<ul>
+<li>Bradley, R. A. &amp; Terry, M. E., &quot;Rank Analysis of Incomplete Block Designs: I. The Method of Paired Comparisons,&quot; <em>Biometrika</em> 39 (1952): 324-345</li>
+</ul>
+<h3>Papers</h3>
+<ul>
+<li>Hunter, D. R., &quot;MM Algorithms for Generalized Bradley-Terry Models,&quot; <em>Annals of Statistics</em> 32 (2004): 384-406</li>
+</ul>
+
+</div>
+</div>
+
+<div class="text">
+<div class="left">
+  <hr>
+  <p style="display:flex;justify-content:space-between">
+    <a href="/notebooks/bradley-terry-model">permanent link</a>
+    <cite><a href="/notebooks/">Notebooks</a></cite>
+    <a href="/notebooks/bradley-terry-model.rss">RSS feed</a>
+  </p>
+</div>
+</div>
+
+</body>
+</html>
