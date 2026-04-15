@@ -22,10 +22,10 @@ $$\ell(p) = \sum_{i \neq j} w_{ij} \log \frac{p_i}{p_i + p_j}$$
 
 This is a concave function in the log-transformed parameters $\lambda_i = \log p_i$, which guarantees a unique global maximum (up to the normalization constraint) whenever the comparison graph is connected.
 
-## To Read
-
-### Recommended
+## Recommended
 - [Bradley-Terry model](https://en.wikipedia.org/wiki/Bradley%E2%80%93Terry_model), Wikipedia — a genuinely good overview for a simple topic
+
+## To Read
 
 ### Primary Sources
 - Bradley, R. A. & Terry, M. E., "Rank Analysis of Incomplete Block Designs: I. The Method of Paired Comparisons," *Biometrika* 39 (1952): 324-345
