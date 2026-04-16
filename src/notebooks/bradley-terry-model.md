@@ -22,6 +22,8 @@ $$\ell(p) = \sum_{i \neq j} w_{ij} \log \frac{p_i}{p_i + p_j}$$
 
 This is a concave function in the log-transformed parameters $\lambda_i = \log p_i$, which guarantees a unique global maximum (up to the normalization constraint) whenever the comparison graph is connected.
 
+> Note: I also built a project using this model, which you can find at [whichisbetter.dev](https://whichisbetter.dev).
+
 ## Recommended
 - [Bradley-Terry model](https://en.wikipedia.org/wiki/Bradley%E2%80%93Terry_model), Wikipedia — a genuinely good overview for a simple topic
 
