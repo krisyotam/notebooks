@@ -436,8 +436,7 @@ for (const nb of notebooks) {
 // Write index to repo root
 const notebookEntries = notebooks.map(nb => {
   const formattedUpdated = formatDate(nb.updated);
-  const star = nb.favorite ? ' <span class="fav-star" title="Favorite">&#9733;</span>' : '';
-  return `<div class="listing"><div class="left"><dl><dt><a href="/notebooks/${nb.slug}" target="_blank">${nb.title}</a> <i>(${formattedUpdated})</i>${star}</dt></dl></div></div>`;
+  return `<div class="listing"><div class="left"><dl><dt><a href="/notebooks/${nb.slug}" target="_blank">${nb.title}</a> <i>(${formattedUpdated})</i></dt></dl></div></div>`;
 }).join('\n');
 
 const hasFaq = config.faq && fs.existsSync(path.join(srcDir, 'faq.md'));
