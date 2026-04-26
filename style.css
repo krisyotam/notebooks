@@ -299,6 +299,14 @@ dt {
   margin-top: 1.5rem;
 }
 
+/* ── Favorite star (index listing) ── */
+.fav-star {
+  color: #d4a017;
+  font-size: 0.9em;
+  margin-left: 0.2em;
+  vertical-align: baseline;
+}
+
 /* Color intensity by value — maps to getStatusColor/getConfidenceColor/getImportanceColor grayscale */
 .meta-high    { color: #111; }
 .meta-mid     { color: #555; }

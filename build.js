@@ -100,7 +100,7 @@ function metaColor(type, value) {
   return 'meta-mid';
 }
 
-function notebookHtml(slug, title, formattedCreated, formattedUpdated, renderedBody, description, status, certainty, importance) {
+function notebookHtml(slug, title, formattedCreated, formattedUpdated, renderedBody, description, status, certainty, importance, theme) {
   const canonicalUrl = `https://krisyotam.com/notebooks/${slug}`;
   const desc = description || `${title} — notebook by Kris Yotam`;
   return `<!DOCTYPE html>
@@ -119,7 +119,7 @@ function notebookHtml(slug, title, formattedCreated, formattedUpdated, renderedB
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="${escapeXml(title)}">
   <meta name="twitter:description" content="${escapeXml(desc)}">
-  <link href="/notebooks/style.css" rel="stylesheet">
+  <link href="/notebooks/style.css" rel="stylesheet">${theme ? `\n  <link href="/notebooks/themes/${theme}.css" rel="stylesheet">` : ''}
   <title>${title} — Kris's Notebooks</title>
 ${mathjaxBlock()}
 </head>
@@ -368,6 +368,17 @@ function escapeXml(str) {
 fs.mkdirSync(buildDir, { recursive: true });
 fs.mkdirSync(buildNotebooksDir, { recursive: true });
 
+// Copy theme CSS files to build/themes/
+const themesDir = 'themes';
+const buildThemesDir = path.join(buildDir, 'themes');
+if (fs.existsSync(themesDir)) {
+  fs.mkdirSync(buildThemesDir, { recursive: true });
+  for (const tf of fs.readdirSync(themesDir).filter(f => f.endsWith('.css'))) {
+    fs.copyFileSync(path.join(themesDir, tf), path.join(buildThemesDir, tf));
+    console.log(`  build/themes/${tf}`);
+  }
+}
+
 const files = fs.readdirSync(srcNotebooksDir).filter(f => f.endsWith('.md'));
 
 const notebooks = files.map(file => {
@@ -384,6 +395,8 @@ const notebooks = files.map(file => {
     status: data.status || 'Draft',
     certainty: data.certainty || 'possible',
     importance: parseInt(data.importance, 10) || 5,
+    favorite: data.favorite === 'true' || data.favorite === true,
+    theme: data.theme || '',
     renderedBody,
   };
 });
@@ -411,7 +424,7 @@ for (const nb of notebooks) {
   const formattedCreated = formatDate(nb.created);
   const formattedUpdated = formatDate(nb.updated);
 
-  const html = notebookHtml(nb.slug, nb.title, formattedCreated, formattedUpdated, nb.renderedBody, nb.description, nb.status, nb.certainty, nb.importance);
+  const html = notebookHtml(nb.slug, nb.title, formattedCreated, formattedUpdated, nb.renderedBody, nb.description, nb.status, nb.certainty, nb.importance, nb.theme);
   fs.writeFileSync(path.join(buildNotebooksDir, `${nb.slug}.html`), html);
 
   const rss = notebookRss(nb.slug, nb.title, formattedUpdated, nb.renderedBody, nb.updated);
@@ -423,7 +436,8 @@ for (const nb of notebooks) {
 // Write index to repo root
 const notebookEntries = notebooks.map(nb => {
   const formattedUpdated = formatDate(nb.updated);
-  return `<div class="listing"><div class="left"><dl><dt><a href="/notebooks/${nb.slug}" target="_blank">${nb.title}</a> <i>(${formattedUpdated})</i></dt></dl></div></div>`;
+  const star = nb.favorite ? ' <span class="fav-star" title="Favorite">&#9733;</span>' : '';
+  return `<div class="listing"><div class="left"><dl><dt><a href="/notebooks/${nb.slug}" target="_blank">${nb.title}</a> <i>(${formattedUpdated})</i>${star}</dt></dl></div></div>`;
 }).join('\n');
 
 const hasFaq = config.faq && fs.existsSync(path.join(srcDir, 'faq.md'));

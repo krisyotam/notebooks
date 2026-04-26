@@ -1,0 +1,82 @@
+/* Beatrice Palette — Villa Ephrussi de Rothschild
+   Rose Blush (villa walls) | Cream (ornate trim) | Deep Indigo (shadows) | Terracotta (roof) | Sage (gardens)
+   Derived from oklch values in the v0 theme demo. */
+
+body {
+  background: #f5ede8;
+  color: #2a2545;
+}
+
+a {
+  color: #a0603a;
+}
+
+a:visited {
+  color: #7a4a30;
+}
+
+.nb-header {
+  background: #faf5f0;
+  border-color: #ddd0c8;
+}
+
+.nb-header-title {
+  color: #2a2545;
+}
+
+.nb-header-desc {
+  color: #6b6080;
+}
+
+.nb-header-dates {
+  color: #6b6080;
+}
+
+.nb-header-dates .sep {
+  color: #b0a098;
+}
+
+.nb-meta .dot {
+  color: #6b6080;
+}
+
+.nb-header-rule {
+  border-top-color: #ddd0c8;
+}
+
+.nb-outer-rule {
+  border-top-color: #ddd0c8;
+}
+
+.nb-back {
+  color: #6b6080;
+}
+
+.nb-back:visited {
+  color: #6b6080;
+}
+
+.nb-back:hover {
+  color: #2a2545;
+}
+
+.nb-popover {
+  background: #faf5f0;
+  border-color: #ddd0c8;
+}
+
+.nb-popover h4 {
+  color: #2a2545;
+}
+
+.nb-popover p {
+  color: #6b6080;
+}
+
+hr {
+  border-top-color: #ddd0c8;
+}
+
+.meta-high { color: #2a2545; }
+.meta-mid  { color: #6b6080; }
+.meta-low  { color: #b0a098; }
