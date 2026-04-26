@@ -12,7 +12,14 @@ theme: "beatrice"
 
 My entry way into the discovery of perhaps my favorite socialite was her magnum opus Villa Ephrussi de Rothschild. The Villa itself is just a magnificent self portrait of Béatrice's creative style. Béatrice was a French Socialite, Art Collector, and a member of the french branch of the Rothschild Banking Industry. As previously mentioned Villa Île-de-France at Saint-Jean-Cap-Ferrat, now known as the Villa Ephrussi de Rothschild is by far her most notable work. At her death she beqeauthed the villa , and over 5,000 works of art to the Académie des Beaux-Arts of the Institut de France.
 
+&nbsp;
+
 She married Maurice Ephrussi 6 June 1883 in Paris, at the Synagogue on Rue de la Victorie. Maurice her husband was a Ashkenazi Jew held from a Banking Dynasty whos progenitor Charles Joachim Ephrussi (1792–1864), built a grain-trading fortune in Odessa. Circa 1860 the family was the world's largest exporter of wheat.
+
+## See Also
+- Belle Époque (Placeholder)
+- Ephrussi Family (Placeholder)
+- Académie des Beaux-Arts of the Institut de France (Placeholder)
 
 <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 24px 0;">
   <figure style="margin: 0; text-align: center;">
@@ -40,8 +47,3 @@ She married Maurice Ephrussi 6 June 1883 in Paris, at the Synagogue on Rue de la
     <figcaption style="font-size: 0.8em; color: #666; margin-top: 4px;">Inside Villa Ephrussi.</figcaption>
   </figure>
 </div>
-
-## See Also
-- Belle Époque (Placeholder)
-- Ephrussi Family (Placeholder)
-- Académie des Beaux-Arts of the Institut de France (Placeholder)
