@@ -317,7 +317,7 @@ function indexHtml(notebookEntries, hasFaq) {
 
 ${faqLine}<p>&mdash; <a href="https://krisyotam.com/home">Kris</a></p>
 
-<center><a href="/notebooks/feed.rss" target="_blank">RSS feed</a> &nbsp; <a href="/notebooks/colophon" target="_blank">Colophon</a> &nbsp; <a href="https://krisyotam.com/contact" target="_blank">Contact</a></center>
+<center><a href="/notebooks/feed.rss" target="_blank">rss</a> &nbsp; <a href="/notebooks/ideas" target="_blank">ideas</a> &nbsp; <a href="/notebooks/questions" target="_blank">questions</a> &nbsp; <a href="/notebooks/colophon" target="_blank">colophon</a> &nbsp; <a href="https://krisyotam.com/contact" target="_blank">contact</a></center>
 
 </div>
 </div>

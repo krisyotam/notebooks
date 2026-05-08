@@ -1,40 +1,40 @@
-[ ] Can a Language Die
-[ ] Can Civilization Survive Technology
-[ ] Can Fiction Teach
-[ ] Can Machines Think
-[ ] Can Math Be Formalized
-[ ] Can We Trust Our Senses
-[ ] Could the Holocaust Have Been Prevented
-[ ] Does Free Will Exist
-[ ] Does God Exist
-[ ] Does Language Shape Thought
-[ ] Equality vs Liberty
-[ ] How Did Life Originate
-[ ] Individuals vs Forces
-[ ] Is Beauty Objective
-[ ] Is Democracy Best
-[ ] Is Grammar Innate
-[ ] Is Math Discovered or Invented
-[ ] Is Morality Objective
-[ ] Is Nature Valuable
-[ ] Is Progress Real
-[ ] Is Punishment Justified
-[ ] Is Science the Only Truth
-[ ] Is the Author Dead
-[ ] Is There an Afterlife
-[ ] Is There Extraterrestrial Life
-[ ] What Are Our Obligations to the Future
-[ ] What Came Before the Big Bang
-[ ] What Do We Owe Strangers
-[ ] What Is Art For
-[ ] What Is Consciousness
-[ ] What Is Dark Matter
-[ ] What Is Evil
-[ ] What Is Infinity
-[ ] What Is Intelligence
-[ ] What Is Knowledge
-[ ] What Is the Self
-[ ] What Legitimizes Authority
-[ ] What Makes Great Literature
-[ ] Why Does Math Describe Reality
-[ ] Why Something Rather Than Nothing
+[ ] 2026-05-08 08:00 | Can a Language Die
+[ ] 2026-05-08 08:20 | Can Civilization Survive Technology
+[ ] 2026-05-08 08:40 | Can Fiction Teach
+[ ] 2026-05-08 09:00 | Can Machines Think
+[ ] 2026-05-08 09:20 | Can Math Be Formalized
+[ ] 2026-05-08 09:40 | Can We Trust Our Senses
+[ ] 2026-05-08 10:00 | Could the Holocaust Have Been Prevented
+[ ] 2026-05-08 10:20 | Does Free Will Exist
+[ ] 2026-05-08 10:40 | Does God Exist
+[ ] 2026-05-08 11:00 | Does Language Shape Thought
+[ ] 2026-05-08 11:20 | Equality vs Liberty
+[ ] 2026-05-08 11:40 | How Did Life Originate
+[ ] 2026-05-08 12:00 | Individuals vs Forces
+[ ] 2026-05-08 12:20 | Is Beauty Objective
+[ ] 2026-05-08 12:40 | Is Democracy Best
+[ ] 2026-05-08 13:00 | Is Grammar Innate
+[ ] 2026-05-08 13:20 | Is Math Discovered or Invented
+[ ] 2026-05-08 13:40 | Is Morality Objective
+[ ] 2026-05-08 14:00 | Is Nature Valuable
+[ ] 2026-05-08 14:20 | Is Progress Real
+[ ] 2026-05-08 14:40 | Is Punishment Justified
+[ ] 2026-05-08 15:00 | Is Science the Only Truth
+[ ] 2026-05-08 15:20 | Is the Author Dead
+[ ] 2026-05-08 15:40 | Is There an Afterlife
+[ ] 2026-05-08 16:00 | Is There Extraterrestrial Life
+[ ] 2026-05-08 16:20 | What Are Our Obligations to the Future
+[ ] 2026-05-08 16:40 | What Came Before the Big Bang
+[ ] 2026-05-08 17:00 | What Do We Owe Strangers
+[ ] 2026-05-08 17:20 | What Is Art For
+[ ] 2026-05-08 17:40 | What Is Consciousness
+[ ] 2026-05-08 18:00 | What Is Dark Matter
+[ ] 2026-05-08 18:20 | What Is Evil
+[ ] 2026-05-08 18:40 | What Is Infinity
+[ ] 2026-05-08 19:00 | What Is Intelligence
+[ ] 2026-05-08 19:20 | What Is Knowledge
+[ ] 2026-05-08 19:40 | What Is the Self
+[ ] 2026-05-08 20:00 | What Legitimizes Authority
+[ ] 2026-05-08 20:20 | What Makes Great Literature
+[ ] 2026-05-08 20:40 | Why Does Math Describe Reality
+[ ] 2026-05-08 21:00 | Why Something Rather Than Nothing
