@@ -2,7 +2,7 @@
   "name": "notebooks",
   "version": "1.0.0",
   "scripts": {
-    "build": "node build.js"
+    "build": "node build.js && cc -o converter converter.c && ./converter"
   },
   "dependencies": {
     "gray-matter": "^4.0.3",
