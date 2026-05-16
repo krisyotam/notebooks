@@ -7,7 +7,7 @@ tasks:
         set -eu
         cd ~/notebooks
         git fetch --quiet origin
-        git reset --hard origin/main
+        git reset --hard origin/master
         npm ci --silent
         npm run build
         echo "notebooks rebuilt"
