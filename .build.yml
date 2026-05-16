@@ -3,7 +3,7 @@ secrets:
   - stargate_ssh
 tasks:
   - deploy: |
-      ssh -o StrictHostKeyChecking=no krisyotam@73.50.72.176 '
+      ssh -o StrictHostKeyChecking=no -p 2222 krisyotam@73.50.72.176 '
         set -eu
         cd ~/notebooks
         git fetch --quiet origin
