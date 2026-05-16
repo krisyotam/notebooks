@@ -1,0 +1,14 @@
+image: alpine/edge
+secrets:
+  - stargate_ssh
+tasks:
+  - deploy: |
+      ssh -o StrictHostKeyChecking=no krisyotam@73.50.72.176 '
+        set -eu
+        cd ~/notebooks
+        git fetch --quiet origin
+        git reset --hard origin/main
+        npm ci --silent
+        npm run build
+        echo "notebooks rebuilt"
+      '
