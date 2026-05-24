@@ -8,6 +8,8 @@ tasks:
         cd ~/notebooks
         git fetch --quiet origin
         git reset --hard origin/master
+        git submodule sync --quiet
+        git submodule update --init --recursive --quiet
         npm ci --silent
         npm run build
         echo "notebooks rebuilt"
