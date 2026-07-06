@@ -278,7 +278,7 @@ function notebookRss(slug, title, formattedUpdated, renderedBody, updatedDate) {
 
 function indexHtml(notebookEntries, hasFaq) {
   const faqLine = hasFaq
-    ? `<p>I have compiled a list of <a href="/notebooks/faq" target="_blank">frequently asked questions (FAQ)</a>, and their answers. The questions, and by extension their answers, pertain only to the notebooks and not my larger body of work.</p>\n\n`
+    ? `<p>I have compiled a list of <a href="/notebooks/faq">frequently asked questions (FAQ)</a>, and their answers. The questions, and by extension their answers, pertain only to the notebooks and not my larger body of work.</p>\n\n`
     : '';
   return `<!DOCTYPE html>
 <html lang="en">
@@ -313,11 +313,11 @@ function indexHtml(notebookEntries, hasFaq) {
 <blockquote><em>&para; And I turned my selfe to behold wisedome, and madnesse and folly: for what can the man doe, that commeth after the king? euen that which hath bene already done. Then I saw that wisedome excelleth folly, as farre as light excelleth darkenesse. The wise mans eyes are in his head, but the foole walketh in darknes: and I my selfe perceiued also that one euent happeneth to them all. Then said I in my heart, As it happeneth to the foole, so it happeneth euen to me, and why was I then more wise? then I said in my heart, That this also is vanitie.</em>
 	<div style="text-align:right">&mdash;Solomon, <cite>Ecclesiastes</cite> 2:12&ndash;15 (1611, KJV)</div></blockquote>
 
-<p>These are the notebooks &mdash; more accurately, a slow porting of my previous OneNote notebooks, titled the Libers (Book of Records), where I left abstracts, questions, comments, and links to notes on the topics at hand. This carries on that spirit. If you have answers to any unanswered questions, and reasonable sources for the substantiation of them, feel free to <a href="https://krisyotam.com/contact" target="_blank">write</a>.</p>
+<p>These are the notebooks &mdash; more accurately, a slow porting of my previous OneNote notebooks, titled the Libers (Book of Records), where I left abstracts, questions, comments, and links to notes on the topics at hand. This carries on that spirit. If you have answers to any unanswered questions, and reasonable sources for the substantiation of them, feel free to <a href="https://krisyotam.com/contact">write</a>.</p>
 
 ${faqLine}<p>&mdash; <a href="https://krisyotam.com/home">Kris</a></p>
 
-<center><a href="/notebooks/feed.rss" target="_blank">rss</a> &nbsp; <a href="/notebooks/ideas" target="_blank">ideas</a> &nbsp; <a href="/notebooks/questions" target="_blank">questions</a> &nbsp; <a href="/notebooks/colophon" target="_blank">colophon</a> &nbsp; <a href="https://krisyotam.com/contact" target="_blank">contact</a></center>
+<center><a href="/notebooks/feed.rss">rss</a> &nbsp; <a href="/notebooks/ideas">ideas</a> &nbsp; <a href="/notebooks/questions">questions</a> &nbsp; <a href="/notebooks/colophon">colophon</a> &nbsp; <a href="https://krisyotam.com/contact">contact</a></center>
 
 </div>
 </div>
@@ -436,7 +436,7 @@ for (const nb of notebooks) {
 // Write index to repo root
 const notebookEntries = notebooks.map(nb => {
   const formattedUpdated = formatDate(nb.updated);
-  return `<div class="listing"><div class="left"><dl><dt><a href="/notebooks/${nb.slug}" target="_blank">${nb.title}</a> <i>(${formattedUpdated})</i></dt></dl></div></div>`;
+  return `<div class="listing"><div class="left"><dl><dt><a href="/notebooks/${nb.slug}">${nb.title}</a> <i>(${formattedUpdated})</i></dt></dl></div></div>`;
 }).join('\n');
 
 const hasFaq = config.faq && fs.existsSync(path.join(srcDir, 'faq.md'));
